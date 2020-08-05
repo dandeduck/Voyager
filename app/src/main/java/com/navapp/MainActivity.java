@@ -1,8 +1,10 @@
-package com.example.unnamed;
+package com.navapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.unnamed.R;
 
 public class MainActivity extends AppCompatActivity {
 
