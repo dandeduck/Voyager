@@ -14,7 +14,7 @@ public class PhoneNumber {
         return new PhoneNumber("0000000");
     }
 
-    public PhoneNumber(String number) throws IllegalArgumentException{
+    public PhoneNumber(String number) {
         this.number = PhoneNumberUtils.normalizeNumber(number);
 
         if(number.length() < MIN_PHONE_NUMBER_LENGTH || number.length() > MAX_PHONE_NUMBER_LENGTH)
