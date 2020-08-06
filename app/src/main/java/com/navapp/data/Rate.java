@@ -5,21 +5,18 @@ import java.util.Objects;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "rates")
 public class Rate {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    @NonNull
     private long mId;
 
     @ColumnInfo(name = "name")
     @NonNull
     private String mName;
     @ColumnInfo(name = "price")
-    @NonNull
     private double mPrice;
 
     public Rate(@NonNull String name, double price) {
