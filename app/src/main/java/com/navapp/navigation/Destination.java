@@ -17,6 +17,10 @@ public class Destination {
         this(address, rate, PhoneNumber.empty(), "");
     }
 
+    public Destination(Address address, Rate rate, PhoneNumber phoneNumber) {
+        this(address, rate, phoneNumber, "");
+    }
+
     public Destination(Address address, Rate rate, PhoneNumber phoneNumber, String comment) {
         this.address = address;
         this.rate = rate;
@@ -24,7 +28,6 @@ public class Destination {
         this.comment = comment;
         isDelivered = false;
     }
-
     public Address address() {
         return address;
     }
@@ -39,6 +42,10 @@ public class Destination {
 
     public String comment() {
         return comment;
+    }
+
+    public boolean isDelivered() {
+        return isDelivered;
     }
 
     public void setDelivered() {
