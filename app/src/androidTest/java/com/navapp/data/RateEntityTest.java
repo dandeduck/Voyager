@@ -43,7 +43,7 @@ public class RateEntityTest {
 
         mRateDao.insert(RATES);
 
-        List<Rate> allRates = mRateDao.getAll().getValue();
+        List<Rate> allRates = mRateDao.getAll();
         assertThat(allRates, containsInAnyOrder(RATES));
     }
 }

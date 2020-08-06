@@ -33,10 +33,7 @@ public class DefaultStoreEntityTest {
 
     @Test
     public void insertAndRead_ofSpecificTable_dataMatches() throws Exception {
-        DefaultStore defaultStore = new DefaultStore();
-        defaultStore.setTable(DefaultStoreTable.RATE);
-        defaultStore.setRowId(1);
-
+        DefaultStore defaultStore = new DefaultStore(DefaultStoreTable.RATE, 1);
         mDefaultStoreDao.insert(defaultStore);
 
         DefaultStore store = mDefaultStoreDao.getDefaultByTable(DefaultStoreTable.RATE);

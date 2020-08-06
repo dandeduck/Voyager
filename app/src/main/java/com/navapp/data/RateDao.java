@@ -12,7 +12,7 @@ import androidx.room.Update;
 @Dao
 public interface RateDao {
     @Query("SELECT * FROM rates")
-    LiveData<List<Rate>> getAll();
+    List<Rate> getAll();
     @Query("SELECT * FROM rates WHERE rates.id = :id")
     Rate getById(long id);
 

@@ -7,15 +7,11 @@ import java.util.List;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import androidx.lifecycle.LiveData;
-
 public class RateRepository {
 
     private final AppDatabase mDatabase;
     private final RateDao mRateDao;
     private final DefaultStoreDao mDefaultStoreDao;
-
-    private final LiveData<List<Rate>> mAllRates;
 
     private final ReadWriteLock mDefaultLock;
 
@@ -24,13 +20,11 @@ public class RateRepository {
         mRateDao = database.rateDao();
         mDefaultStoreDao = database.defaultStoreDao();
 
-        mAllRates = mRateDao.getAll();
-
         mDefaultLock = new ReentrantReadWriteLock();
     }
 
-    public LiveData<List<Rate>> getAllRates() {
-        return mAllRates;
+    public List<Rate> getAllRates() {
+        return mRateDao.getAll();
     }
 
     public void insert(Collection<? extends Rate> rates) {
