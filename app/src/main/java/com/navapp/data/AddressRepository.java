@@ -12,7 +12,7 @@ public class AddressRepository {
         mAddressDao = database.addressDao();
     }
 
-    public List<Address> getAllAddresses() {
+    public List<Address> getAll() {
         return mAddressDao.getAll();
     }
 

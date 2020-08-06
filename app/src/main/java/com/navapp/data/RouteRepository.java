@@ -12,7 +12,7 @@ public class RouteRepository {
         mRouteDao = database.routeDao();
     }
 
-    public List<Route> getAllRoutes() {
+    public List<Route> getAll() {
         return mRouteDao.getAll();
     }
 

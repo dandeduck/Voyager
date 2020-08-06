@@ -22,7 +22,7 @@ public class RateRepository {
         mDefaultLock = new ReentrantReadWriteLock();
     }
 
-    public List<Rate> getAllRates() {
+    public List<Rate> getAll() {
         return mRateDao.getAll();
     }
 
