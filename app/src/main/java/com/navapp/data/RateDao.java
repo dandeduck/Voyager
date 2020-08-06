@@ -21,5 +21,5 @@ public interface RateDao {
     @Update
     void update(Rate... rate);
     @Delete
-    void delete(Rate rate);
+    void delete(Rate... rate);
 }
