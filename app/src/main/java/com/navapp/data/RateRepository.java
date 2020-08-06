@@ -55,19 +55,17 @@ public class RateRepository {
     }
 
     public Optional<Rate> getDefaultRate() {
-        return mDatabase.executeWrite(()-> {
-            mDefaultLock.readLock().lock();
-            try {
-                DefaultStore store = mDefaultStoreDao.getDefaultByTable(DefaultStoreTable.RATE);
-                if (store == null) {
-                    return Optional.empty();
-                }
-                Rate rate = mRateDao.getById(store.getRowId());
-                return Optional.ofNullable(rate);
-            } finally {
-                mDefaultLock.readLock().unlock();
+        mDefaultLock.readLock().lock();
+        try {
+            DefaultStore store = mDefaultStoreDao.getDefaultByTable(DefaultStoreTable.RATE);
+            if (store == null) {
+                return Optional.empty();
             }
-        });
+            Rate rate = mRateDao.getById(store.getRowId());
+            return Optional.ofNullable(rate);
+        } finally {
+            mDefaultLock.readLock().unlock();
+        }
     }
 
     public void setDefaultRate(Rate rate) {
