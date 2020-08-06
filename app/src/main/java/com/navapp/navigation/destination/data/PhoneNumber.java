@@ -1,4 +1,4 @@
-package com.navapp.navigation.data;
+package com.navapp.navigation.destination.data;
 
 import android.content.Intent;
 import android.net.Uri;

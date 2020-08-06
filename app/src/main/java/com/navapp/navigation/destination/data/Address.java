@@ -1,4 +1,4 @@
-package com.navapp.navigation.data;
+package com.navapp.navigation.destination.data;
 
 public class Address {
     private final double latitude;

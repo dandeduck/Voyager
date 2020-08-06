@@ -1,10 +1,10 @@
-package com.navapp.navigation;
+package com.navapp.navigation.destination;
 
 import android.content.Intent;
 
-import com.navapp.navigation.data.Address;
-import com.navapp.navigation.data.PhoneNumber;
-import com.navapp.navigation.data.Rate;
+import com.navapp.navigation.destination.data.Address;
+import com.navapp.navigation.destination.data.PhoneNumber;
+import com.navapp.navigation.destination.data.Rate;
 
 public class Destination {
     private final Address address;
