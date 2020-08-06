@@ -10,10 +10,11 @@ import com.navapp.navigation.destination.data.Address;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Deque;
 import java.util.List;
 
 public class Route {
-    private final ArrayDeque<Destination> destinations;
+    private final Deque<Destination> destinations;
     private final List<Destination> destinationsCopy;
     private final Address end;
 
@@ -23,8 +24,8 @@ public class Route {
         this.end = end;
     }
 
-    public ArrayDeque<Destination> destinationsLeft() {
-        return destinations.clone();
+    public Deque<Destination> destinationsLeft() {
+        return destinations;
     }
 
     public List<Destination> allDestinations() {
@@ -42,8 +43,7 @@ public class Route {
     }
 
     public void optimize(Address start) {
-        //do stuff
-        //also may be optimize the copy (if it's not too slow...)
+        throw new UnsupportedOperationException();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
