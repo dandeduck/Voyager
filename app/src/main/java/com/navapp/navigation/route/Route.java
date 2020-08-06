@@ -5,6 +5,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.navapp.navigation.destination.Destination;
+import com.navapp.navigation.destination.data.Address;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -14,10 +15,12 @@ import java.util.List;
 public class Route {
     private final ArrayDeque<Destination> destinations;
     private final List<Destination> destinationsCopy;
+    private final Address end;
 
-    public Route(Collection<Destination> destinations) {
+    public Route(Collection<Destination> destinations, Address end) {
         this.destinations = new ArrayDeque<>(destinations);
         destinationsCopy = new ArrayList<>(destinations);
+        this.end = end;
     }
 
     public ArrayDeque<Destination> destinationsLeft() {
@@ -32,13 +35,13 @@ public class Route {
         return destinations.pop();
     }
 
-    public void addDestination(Destination destination) {
+    public void addDestination(Destination destination, Address currentAddress) {
         destinations.push(destination);
         destinationsCopy.add(destination);
-        optimize();
+        optimize(currentAddress);
     }
 
-    public void optimize() {
+    public void optimize(Address start) {
         //do stuff
         //also may be optimize the copy (if it's not too slow...)
     }
