@@ -8,7 +8,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "rates")
 public class Rate {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
