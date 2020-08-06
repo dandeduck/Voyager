@@ -1,7 +1,8 @@
 package com.navapp.data;
 
 public enum DefaultStoreTable {
-    RATE(0)
+    RATE(0),
+    END_POINT(1)
     ;
 
     private final int mValue;

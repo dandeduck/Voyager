@@ -9,7 +9,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = {Rate.class, DefaultStore.class, Address.class, Route.class},
+@Database(entities = {
+        Rate.class, DefaultStore.class,
+        Address.class, Route.class, EndPoint.class},
         version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
@@ -18,11 +20,11 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract DefaultStoreDao defaultStoreDao();
     public abstract AddressDao addressDao();
     public abstract RouteDao routeDao();
+    public abstract EndPointDao endPointDao();
 
     public void executeWrite(Runnable action) {
         action.run();
     }
-
     public <T> T executeWrite(Supplier<T> action) {
         return action.get();
     }

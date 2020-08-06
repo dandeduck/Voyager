@@ -6,78 +6,78 @@ import java.util.List;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class RateRepository {
-
+public class EndPointRepository {
+    
     private final AppDatabase mDatabase;
-    private final RateDao mRateDao;
+    private final EndPointDao mEndPointDao;
     private final DefaultStoreDao mDefaultStoreDao;
 
     private final ReadWriteLock mDefaultLock;
 
-    public RateRepository(AppDatabase database) {
+    public EndPointRepository(AppDatabase database) {
         mDatabase = database;
-        mRateDao = database.rateDao();
+        mEndPointDao = database.endPointDao();
         mDefaultStoreDao = database.defaultStoreDao();
 
         mDefaultLock = new ReentrantReadWriteLock();
     }
 
-    public List<Rate> getAllRates() {
-        return mRateDao.getAll();
+    public List<EndPoint> getAll() {
+        return mEndPointDao.getAll();
     }
 
-    public void insert(Rate... rates) {
+    public void insert(EndPoint... endPoints) {
         mDatabase.executeWrite(()-> {
-            mRateDao.insert(rates);
+            mEndPointDao.insert(endPoints);
         });
     }
-    public void update(Rate... rates) {
+    public void update(EndPoint... endPoints) {
         mDatabase.executeWrite(()-> {
-            mRateDao.update(rates);
+            mEndPointDao.update(endPoints);
         });
     }
-    public void delete(Rate... rates) {
+    public void delete(EndPoint... endPoints) {
         mDatabase.executeWrite(()-> {
             mDefaultLock.writeLock().lock();
             try {
-                DefaultStore store = mDefaultStoreDao.getDefaultByTable(DefaultStoreTable.RATE);
-                for (Rate rate : rates) {
-                    if (store != null && store.getRowId() == rate.getId()) {
+                DefaultStore store = mDefaultStoreDao.getDefaultByTable(DefaultStoreTable.END_POINT);
+                for (EndPoint endPoint : endPoints) {
+                    if (store != null && store.getRowId() == endPoint.getId()) {
                         mDefaultStoreDao.delete(store);
                     }
                 }
 
-                mRateDao.delete(rates);
+                mEndPointDao.delete(endPoints);
             } finally {
                 mDefaultLock.writeLock().unlock();
             }
         });
     }
 
-    public Optional<Rate> getDefault() {
+    public Optional<EndPoint> getDefault() {
         mDefaultLock.readLock().lock();
         try {
-            DefaultStore store = mDefaultStoreDao.getDefaultByTable(DefaultStoreTable.RATE);
+            DefaultStore store = mDefaultStoreDao.getDefaultByTable(DefaultStoreTable.END_POINT);
             if (store == null) {
                 return Optional.empty();
             }
-            Rate rate = mRateDao.getById(store.getRowId());
-            return Optional.ofNullable(rate);
+            EndPoint endPoint = mEndPointDao.getById(store.getRowId());
+            return Optional.ofNullable(endPoint);
         } finally {
             mDefaultLock.readLock().unlock();
         }
     }
 
-    public void setDefault(Rate rate) {
+    public void setDefault(EndPoint endPoint) {
         mDatabase.executeWrite(()-> {
             mDefaultLock.writeLock().lock();
             try {
-                DefaultStore store = mDefaultStoreDao.getDefaultByTable(DefaultStoreTable.RATE);
+                DefaultStore store = mDefaultStoreDao.getDefaultByTable(DefaultStoreTable.END_POINT);
                 if (store == null) {
-                    store = new DefaultStore(DefaultStoreTable.RATE, rate.getId());
+                    store = new DefaultStore(DefaultStoreTable.END_POINT, endPoint.getId());
                     mDefaultStoreDao.insert(store);
                 } else {
-                    store.setRowId(rate.getId());
+                    store.setRowId(endPoint.getId());
                     mDefaultStoreDao.update(store);
                 }
             } finally {
