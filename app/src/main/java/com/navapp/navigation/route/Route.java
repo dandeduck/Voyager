@@ -1,9 +1,5 @@
 package com.navapp.navigation.route;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import com.navapp.navigation.destination.Destination;
 import com.navapp.navigation.destination.data.Address;
 
@@ -46,10 +42,13 @@ public class Route {
         throw new UnsupportedOperationException();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public double sum() {
-        return destinationsCopy.stream()
-                .mapToDouble(destination -> destination.isDelivered() ? destination.rate() : 0)
-                .sum();
+        double sum = 0;
+
+        for (Destination dest: destinationsCopy) {
+            sum += dest.isDelivered() ? dest.rate() : 0;
+        }
+
+        return sum;
     }
 }
