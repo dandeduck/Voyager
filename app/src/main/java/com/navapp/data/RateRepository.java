@@ -2,7 +2,6 @@ package com.navapp.data;
 
 import com.navapp.util.Optional;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -27,19 +26,17 @@ public class RateRepository {
         return mRateDao.getAll();
     }
 
-    public void insert(Collection<? extends Rate> rates) {
+    public void insert(Rate... rates) {
         mDatabase.executeWrite(()-> {
-            mRateDao.insert(rates.toArray(new Rate[0]));
+            mRateDao.insert(rates);
         });
     }
-
-    public void update(Collection<? extends Rate> rates) {
+    public void update(Rate... rates) {
         mDatabase.executeWrite(()-> {
-            mRateDao.update(rates.toArray(new Rate[0]));
+            mRateDao.update(rates);
         });
     }
-
-    public void delete(Collection<? extends Rate> rates) {
+    public void delete(Rate... rates) {
         mDatabase.executeWrite(()-> {
             mDefaultLock.writeLock().lock();
             try {
@@ -50,7 +47,7 @@ public class RateRepository {
                     }
                 }
 
-                mRateDao.delete(rates.toArray(new Rate[0]));
+                mRateDao.delete(rates);
             } finally {
                 mDefaultLock.writeLock().unlock();
             }
