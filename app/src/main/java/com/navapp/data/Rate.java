@@ -1,7 +1,5 @@
 package com.navapp.data;
 
-import java.util.Objects;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -44,29 +42,5 @@ public class Rate {
     }
     public void setPrice(double price) {
         mPrice = price;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Rate rate = (Rate) o;
-        return
-                Double.compare(rate.mPrice, mPrice) == 0 &&
-                mName.equals(rate.mName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(mName, mPrice);
-    }
-
-    @Override
-    public String toString() {
-        return "Rate{" +
-                "id=" + mId +
-                ", mName='" + mName + '\'' +
-                ", mPrice=" + mPrice +
-                '}';
     }
 }

@@ -2,8 +2,6 @@ package com.navapp.data;
 
 import android.content.Context;
 
-import com.navapp.util.function.Supplier;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -21,13 +19,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract AddressDao addressDao();
     public abstract RouteDao routeDao();
     public abstract EndPointDao endPointDao();
-
-    public void executeWrite(Runnable action) {
-        action.run();
-    }
-    public <T> T executeWrite(Supplier<T> action) {
-        return action.get();
-    }
 
     private static AppDatabase sInstance;
     public static AppDatabase getDatabase(Context context) {

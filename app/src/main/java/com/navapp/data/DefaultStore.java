@@ -1,7 +1,5 @@
 package com.navapp.data;
 
-import java.util.Objects;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -32,27 +30,5 @@ public class DefaultStore {
     }
     public void setRowId(long rowId) {
         mRowId = rowId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DefaultStore that = (DefaultStore) o;
-        return mRowId == that.mRowId &&
-                mTable == that.mTable;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(mTable, mRowId);
-    }
-
-    @Override
-    public String toString() {
-        return "DefaultStore{" +
-                "mTable=" + mTable +
-                ", mRowId=" + mRowId +
-                '}';
     }
 }

@@ -7,15 +7,19 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-// TODO: ADD INDEX TO route_id
 // WARNING: route_id column references a foreign key but it is not part of an index.
 // This may trigger full table scans whenever parent table is modified so you are highly advised to
 // create an index that covers this column.
 @Entity(tableName = "addresses",
-        foreignKeys = @ForeignKey(entity = Route.class,
+        foreignKeys = {@ForeignKey(entity = Route.class,
                 parentColumns = "id",
                 childColumns = "route_id",
-                onDelete = ForeignKey.CASCADE))
+                onDelete = ForeignKey.CASCADE),
+                @ForeignKey(entity = Rate.class,
+                parentColumns = "id",
+                childColumns = "rate_id",
+                onDelete = ForeignKey.CASCADE)
+})
 public class Address {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -32,18 +36,21 @@ public class Address {
 
     @ColumnInfo(name = "route_id")
     private long mRouteId;
+    @ColumnInfo(name = "rate_id")
+    private long mRateId;
 
-    public Address(@NonNull String rawAddress, String phoneNumber, String comment) {
+    public Address(@NonNull String rawAddress, String phoneNumber, String comment, long rateId) {
         mRawAddress = rawAddress;
         mPhoneNumber = phoneNumber;
         mComment = comment;
 
         mRouteId = -1;
+        mRateId = rateId;
     }
 
     @Ignore
-    public Address(@NonNull String rawAddress) {
-        this(rawAddress, null, null);
+    public Address(@NonNull String rawAddress, long rateId) {
+        this(rawAddress, null, null, rateId);
     }
 
     long getId() {
@@ -80,5 +87,12 @@ public class Address {
     }
     void setRouteId(long routeId) {
         mRouteId = routeId;
+    }
+
+    long getRateId() {
+        return mRateId;
+    }
+    void setRateId(long rateId) {
+        mRateId = rateId;
     }
 }
