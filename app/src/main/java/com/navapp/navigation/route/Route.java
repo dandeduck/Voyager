@@ -19,8 +19,17 @@ public class Route {
         this.end = end;
     }
 
+    public Route changeEnd(Address newEnd) {
+        return new Route(destinations, newEnd);
+    }
+
+    public Route addDestination(Destination destination) {
+        destinations.add(destination);
+        return new Route(destinations, end);
+    }
+
     public List<Destination> destinations() {
-        return destinations;
+        return Collections.unmodifiableList(destinations);
     }
 
     public Address end() {
