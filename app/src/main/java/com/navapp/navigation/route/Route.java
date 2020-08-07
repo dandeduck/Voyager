@@ -11,45 +11,19 @@ import java.util.Deque;
 import java.util.List;
 
 public class Route {
-    private final Deque<Destination> destinations;
-    private final List<Destination> destinationsCopy;
+    private final List<Destination> destinations;
     private final Address end;
 
     public Route(Collection<Destination> destinations, Address end) {
-        this.destinations = new ArrayDeque<>(destinations);
-        destinationsCopy = new ArrayList<>(destinations);
+        this.destinations = new ArrayList<>(destinations);
         this.end = end;
     }
 
-    public List<Destination> destinationsLeft() {
-        return new ArrayList<>(Collections.unmodifiableCollection(destinations));
+    public List<Destination> destinations() {
+        return destinations;
     }
 
-    public List<Destination> allDestinations() {
-        return Collections.unmodifiableList(destinationsCopy);
-    }
-
-    public Destination nextDestination() {
-        return destinations.pop();
-    }
-
-    public void addDestination(Destination destination, Address currentAddress) {
-        destinations.push(destination);
-        destinationsCopy.add(destination);
-        optimize(currentAddress);
-    }
-
-    public void optimize(Address start) {
-        throw new UnsupportedOperationException();
-    }
-
-    public double sum() {
-        double sum = 0;
-
-        for (Destination dest: destinationsCopy) {
-            sum += dest.isDelivered() ? dest.rate() : 0;
-        }
-
-        return sum;
+    public Address end() {
+        return end;
     }
 }
