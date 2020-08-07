@@ -1,6 +1,6 @@
 package com.navapp.navigation.destination;
 
-import android.content.Intent;
+import android.net.Uri;
 
 import com.navapp.navigation.destination.data.Address;
 import com.navapp.navigation.destination.data.PhoneNumber;
@@ -36,8 +36,8 @@ public class Destination {
         return rate.value();
     }
 
-    public Intent callIntent() {
-        return phoneNumber.callIntent();
+    public Uri callUri() {
+        return phoneNumber.callUri();
     }
 
     public String comment() {

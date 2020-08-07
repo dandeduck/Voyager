@@ -4,10 +4,6 @@ public class Address {
     private final double latitude;
     private final double longitude;
 
-    public static Address empty() {
-        return new Address(0, 0); //null island
-    }
-
     public Address(String addressText) {
         this(0, 0); //implement find through Waze.
     }
