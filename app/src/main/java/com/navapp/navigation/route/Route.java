@@ -6,6 +6,7 @@ import com.navapp.navigation.destination.data.Address;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.List;
 
@@ -20,12 +21,12 @@ public class Route {
         this.end = end;
     }
 
-    public Deque<Destination> destinationsLeft() {
-        return destinations;
+    public List<Destination> destinationsLeft() {
+        return new ArrayList<>(Collections.unmodifiableCollection(destinations));
     }
 
     public List<Destination> allDestinations() {
-        return destinationsCopy;
+        return Collections.unmodifiableList(destinationsCopy);
     }
 
     public Destination nextDestination() {
