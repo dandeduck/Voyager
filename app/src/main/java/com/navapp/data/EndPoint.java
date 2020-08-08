@@ -3,9 +3,21 @@ package com.navapp.data;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "endpoints")
+@Entity(tableName = "endpoints",
+            foreignKeys = {
+                    @ForeignKey(entity = Address.class,
+                            parentColumns = "id",
+                            childColumns = "address_id",
+                            onDelete = ForeignKey.CASCADE)
+            },
+            indices = {
+                @Index("address_id")
+            }
+)
 public class EndPoint {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -14,13 +26,13 @@ public class EndPoint {
     @ColumnInfo(name = "name")
     @NonNull
     private String name;
-    @ColumnInfo(name = "address")
-    @NonNull
-    private String rawAddress;
 
-    public EndPoint(@NonNull String name, @NonNull String rawAddress) {
+    @ColumnInfo(name = "address_id")
+    private long addressId;
+
+    public EndPoint(@NonNull String name, long addressId) {
         this.name = name;
-        this.rawAddress = rawAddress;
+        this.addressId = addressId;
     }
 
     long getId() {
@@ -38,11 +50,10 @@ public class EndPoint {
         this.name = name;
     }
 
-    @NonNull
-    public String getRawAddress() {
-        return rawAddress;
+    public long getAddressId() {
+        return addressId;
     }
-    public void setRawAddress(@NonNull String rawAddress) {
-        this.rawAddress = rawAddress;
+    public void setAddressId(long addressId) {
+        this.addressId = addressId;
     }
 }

@@ -8,8 +8,8 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 @Database(entities = {
-        Rate.class, DefaultStore.class,
-        Address.class, Route.class, EndPoint.class},
+        Rate.class, DefaultStore.class, Address.class,
+        Destination.class, Route.class, EndPoint.class},
         version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
@@ -17,6 +17,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract RateDao rateDao();
     public abstract DefaultStoreDao defaultStoreDao();
     public abstract AddressDao addressDao();
+    public abstract DestinationDao destinationDao();
     public abstract RouteDao routeDao();
     public abstract EndPointDao endPointDao();
 

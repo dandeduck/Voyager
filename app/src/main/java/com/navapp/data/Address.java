@@ -3,27 +3,9 @@ package com.navapp.data;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Ignore;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "addresses",
-        foreignKeys = {
-            @ForeignKey(entity = Route.class,
-                parentColumns = "id",
-                childColumns = "route_id",
-                onDelete = ForeignKey.CASCADE),
-            @ForeignKey(entity = Rate.class,
-                parentColumns = "id",
-                childColumns = "rate_id",
-                onDelete = ForeignKey.CASCADE)
-        },
-        indices = {
-            @Index("route_id"),
-            @Index("rate_id")
-        }
-)
+@Entity(tableName = "addresses")
 public class Address {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -33,28 +15,15 @@ public class Address {
     @NonNull
     private String rawAddress;
 
-    @ColumnInfo(name = "phone")
-    private String phoneNumber;
-    @ColumnInfo(name = "comment")
-    private String comment;
+    @ColumnInfo(name = "longitude")
+    private long longitude;
+    @ColumnInfo(name = "latitude")
+    private long latitude;
 
-    @ColumnInfo(name = "route_id")
-    private long routeId;
-    @ColumnInfo(name = "rate_id")
-    private long rateId;
-
-    public Address(@NonNull String rawAddress, String phoneNumber, String comment, long rateId) {
+    public Address(@NonNull String rawAddress, long longitude, long latitude) {
         this.rawAddress = rawAddress;
-        this.phoneNumber = phoneNumber;
-        this.comment = comment;
-
-        routeId = -1;
-        this.rateId = rateId;
-    }
-
-    @Ignore
-    public Address(@NonNull String rawAddress, long rateId) {
-        this(rawAddress, null, null, rateId);
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     long getId() {
@@ -72,31 +41,17 @@ public class Address {
         this.rawAddress = rawAddress;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public long getLongitude() {
+        return longitude;
     }
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setLongitude(long longitude) {
+        this.longitude = longitude;
     }
 
-    long getRouteId() {
-        return routeId;
+    public long getLatitude() {
+        return latitude;
     }
-    void setRouteId(long routeId) {
-        this.routeId = routeId;
-    }
-
-    long getRateId() {
-        return rateId;
-    }
-    void setRateId(long rateId) {
-        this.rateId = rateId;
+    public void setLatitude(long latitude) {
+        this.latitude = latitude;
     }
 }

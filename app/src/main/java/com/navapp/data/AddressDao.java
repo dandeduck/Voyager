@@ -12,10 +12,6 @@ import androidx.room.Update;
 public interface AddressDao {
     @Query("SELECT * FROM addresses")
     List<Address> getAll();
-    @Query("SELECT * FROM addresses WHERE addresses.route_id = :routeId")
-    List<Address> getByRouteId(long routeId);
-    @Query("SELECT * FROM addresses WHERE addresses.route_id = -1")
-    List<Address> getWithoutRoute();
 
     @Insert
     void insert(Address... addresses);
