@@ -7,6 +7,7 @@ import java.util.Random;
 public class FakeModels {
 
     private static final int MAX_STRING_LENGTH = 40;
+    private static final double MAX_DOUBLE_SIZE = 1e6;
 
     private final AppDatabase database;
     private final Random random;
@@ -19,8 +20,8 @@ public class FakeModels {
     public AddressModel makeFakeAddress() {
         AddressModel address = new AddressModel(
                 generateAlphanumericString(),
-                random.nextInt(),
-                random.nextInt()
+                random.nextDouble() * MAX_DOUBLE_SIZE,
+                random.nextDouble() * MAX_DOUBLE_SIZE
         );
 
         long[] ids = database.addressDao().insert(address);
