@@ -14,8 +14,6 @@ public interface DestinationDao {
     List<DestinationModel> getAll();
     @Query("SELECT * FROM destinations WHERE destinations.route_id = :routeId")
     List<DestinationModel> getByRouteId(long routeId);
-    @Query("SELECT * FROM destinations WHERE destinations.route_id = -1")
-    List<DestinationModel> getWithoutRoute();
 
     @Insert
     long[] insert(DestinationModel... destinations);
