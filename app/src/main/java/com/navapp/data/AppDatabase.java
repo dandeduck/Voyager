@@ -26,15 +26,19 @@ public abstract class AppDatabase extends RoomDatabase {
         if (sInstance == null) {
             synchronized (AppDatabase.class) {
                 if (sInstance == null) {
-                    sInstance = Room.databaseBuilder(
-                            context.getApplicationContext(),
-                            AppDatabase.class,
-                            "database")
-                            .build();
+                    sInstance = createInstance(context);
                 }
             }
         }
 
         return sInstance;
+    }
+
+    private static AppDatabase createInstance(Context context) {
+        return Room.databaseBuilder(
+                context.getApplicationContext(),
+                AppDatabase.class,
+                "database")
+                .build();
     }
 }
