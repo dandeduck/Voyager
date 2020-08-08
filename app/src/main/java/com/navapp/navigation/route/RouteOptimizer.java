@@ -4,8 +4,8 @@ import com.navapp.navigation.destination.Destination;
 import com.navapp.navigation.destination.data.Address;
 
 import java.util.Collection;
-import java.util.Deque;
+import java.util.Queue;
 
 public interface RouteOptimizer {
-    Deque<Destination> optimizeRoute(Address start, Collection<Destination> destinations, Address end);
+    Queue<Destination> optimizeRoute(Address start, Collection<Destination> destinations, Address end);
 }
