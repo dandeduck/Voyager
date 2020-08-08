@@ -6,8 +6,6 @@ import com.navapp.navigation.destination.data.Address;
 import java.util.Collection;
 import java.util.Deque;
 
-public class RouteOptimizer {
-    public static Deque<Destination> optimizeRoute(Address start, Collection<Destination> destinations, Address end) {
-        throw new UnsupportedOperationException();
-    }
+public interface RouteOptimizer {
+    Deque<Destination> optimizeRoute(Address start, Collection<Destination> destinations, Address end);
 }
