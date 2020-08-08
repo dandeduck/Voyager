@@ -14,6 +14,10 @@ public class NodeUtil {
             children.add(createAllDestinationNode(tmp.remove(i), tmp, end));
         }
 
+        if(tmp.size() == 0) {
+            children.add(new Node(end, null));
+        }
+
         return new Node(start, children);
     }
 }
