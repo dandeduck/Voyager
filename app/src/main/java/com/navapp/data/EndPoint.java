@@ -9,40 +9,40 @@ import androidx.room.PrimaryKey;
 public class EndPoint {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long mId;
+    private long id;
 
     @ColumnInfo(name = "name")
     @NonNull
-    private String mName;
+    private String name;
     @ColumnInfo(name = "address")
     @NonNull
-    private String mRawAddress;
+    private String rawAddress;
 
     public EndPoint(@NonNull String name, @NonNull String rawAddress) {
-        mName = name;
-        mRawAddress = rawAddress;
+        this.name = name;
+        this.rawAddress = rawAddress;
     }
 
     long getId() {
-        return mId;
+        return id;
     }
     void setId(long id) {
-        mId = id;
+        this.id = id;
     }
 
     @NonNull
     public String getName() {
-        return mName;
+        return name;
     }
     public void setName(@NonNull String name) {
-        mName = name;
+        this.name = name;
     }
 
     @NonNull
     public String getRawAddress() {
-        return mRawAddress;
+        return rawAddress;
     }
     public void setRawAddress(@NonNull String rawAddress) {
-        mRawAddress = rawAddress;
+        this.rawAddress = rawAddress;
     }
 }

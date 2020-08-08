@@ -8,7 +8,7 @@ import androidx.room.Update;
 
 @Dao
 public interface DefaultStoreDao {
-    @Query("SELECT * FROM defaults WHERE table_type = :table")
+    @Query("SELECT * FROM defaults WHERE `table_type` = :table")
     DefaultStore getDefaultByTable(DefaultStoreTable table);
 
     @Insert

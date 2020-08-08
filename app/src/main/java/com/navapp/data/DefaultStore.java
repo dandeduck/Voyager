@@ -9,26 +9,26 @@ public class DefaultStore {
 
     @PrimaryKey
     @ColumnInfo(name = "table_type")
-    private DefaultStoreTable mTable;
+    private DefaultStoreTable table;
     @ColumnInfo(name = "row_id")
-    private long mRowId;
+    private long rowId;
 
     public DefaultStore(DefaultStoreTable table, long rowId) {
-        mTable = table;
-        mRowId = rowId;
+        this.table = table;
+        this.rowId = rowId;
     }
 
     public DefaultStoreTable getTable() {
-        return mTable;
+        return table;
     }
     public void setTable(DefaultStoreTable table) {
-        mTable = table;
+        this.table = table;
     }
 
     public long getRowId() {
-        return mRowId;
+        return rowId;
     }
     public void setRowId(long rowId) {
-        mRowId = rowId;
+        this.rowId = rowId;
     }
 }

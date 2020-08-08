@@ -27,29 +27,29 @@ import androidx.room.PrimaryKey;
 public class Address {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long mId;
+    private long id;
 
     @ColumnInfo(name = "address")
     @NonNull
-    private String mRawAddress;
+    private String rawAddress;
 
     @ColumnInfo(name = "phone")
-    private String mPhoneNumber;
+    private String phoneNumber;
     @ColumnInfo(name = "comment")
-    private String mComment;
+    private String comment;
 
     @ColumnInfo(name = "route_id")
-    private long mRouteId;
+    private long routeId;
     @ColumnInfo(name = "rate_id")
-    private long mRateId;
+    private long rateId;
 
     public Address(@NonNull String rawAddress, String phoneNumber, String comment, long rateId) {
-        mRawAddress = rawAddress;
-        mPhoneNumber = phoneNumber;
-        mComment = comment;
+        this.rawAddress = rawAddress;
+        this.phoneNumber = phoneNumber;
+        this.comment = comment;
 
-        mRouteId = -1;
-        mRateId = rateId;
+        routeId = -1;
+        this.rateId = rateId;
     }
 
     @Ignore
@@ -58,45 +58,45 @@ public class Address {
     }
 
     long getId() {
-        return mId;
+        return id;
     }
     void setId(long id) {
-        mId = id;
+        this.id = id;
     }
 
     @NonNull
     public String getRawAddress() {
-        return mRawAddress;
+        return rawAddress;
     }
     public void setRawAddress(@NonNull String rawAddress) {
-        mRawAddress = rawAddress;
+        this.rawAddress = rawAddress;
     }
 
     public String getPhoneNumber() {
-        return mPhoneNumber;
+        return phoneNumber;
     }
     public void setPhoneNumber(String phoneNumber) {
-        mPhoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getComment() {
-        return mComment;
+        return comment;
     }
     public void setComment(String comment) {
-        mComment = comment;
+        this.comment = comment;
     }
 
     long getRouteId() {
-        return mRouteId;
+        return routeId;
     }
     void setRouteId(long routeId) {
-        mRouteId = routeId;
+        this.routeId = routeId;
     }
 
     long getRateId() {
-        return mRateId;
+        return rateId;
     }
     void setRateId(long rateId) {
-        mRateId = rateId;
+        this.rateId = rateId;
     }
 }

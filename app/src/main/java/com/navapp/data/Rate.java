@@ -9,38 +9,38 @@ import androidx.room.PrimaryKey;
 public class Rate {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long mId;
+    private long id;
 
     @ColumnInfo(name = "name")
     @NonNull
-    private String mName;
+    private String name;
     @ColumnInfo(name = "price")
-    private double mPrice;
+    private double price;
 
     public Rate(@NonNull String name, double price) {
-        mName = name;
-        mPrice = price;
+        this.name = name;
+        this.price = price;
     }
 
     long getId() {
-        return mId;
+        return id;
     }
     void setId(long id) {
-        mId = id;
+        this.id = id;
     }
 
     public void setName(@NonNull String name) {
-        mName = name;
+        this.name = name;
     }
     @NonNull
     public String getName() {
-        return mName;
+        return name;
     }
 
     public double getPrice() {
-        return mPrice;
+        return price;
     }
     public void setPrice(double price) {
-        mPrice = price;
+        this.price = price;
     }
 }

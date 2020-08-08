@@ -9,28 +9,28 @@ import androidx.room.PrimaryKey;
 public class Route {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private long mId;
+    private long id;
 
     @ColumnInfo(name = "name")
     @NonNull
-    private String mName;
+    private String name;
 
     public Route(@NonNull String name) {
-        mName = name;
+        this.name = name;
     }
 
     long getId() {
-        return mId;
+        return id;
     }
     void setId(long id) {
-        mId = id;
+        this.id = id;
     }
 
     public void setName(@NonNull String name) {
-        mName = name;
+        this.name = name;
     }
     @NonNull
     public String getName() {
-        return mName;
+        return name;
     }
 }
