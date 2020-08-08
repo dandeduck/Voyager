@@ -47,7 +47,7 @@ public class DefaultStoreModel {
     @Ignore
     public DefaultStoreModel(DefaultStoreTable table, long rowId) {
         this(table, null, null);
-        table.setInModel(this, rowId);
+        setRowId(rowId);
     }
 
     public DefaultStoreTable getTable() {
@@ -84,5 +84,12 @@ public class DefaultStoreModel {
     @Override
     public int hashCode() {
         return Objects.hash(table, rateId, endPointId);
+    }
+
+    public long getRowId() {
+        return table.getFromModel(this);
+    }
+    public void setRowId(long rowId) {
+        table.setInModel(this, rowId);
     }
 }
