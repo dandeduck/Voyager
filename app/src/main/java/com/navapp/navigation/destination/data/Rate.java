@@ -13,11 +13,11 @@ public class Rate {
         this.value = value;
     }
 
-    public String name() {
+    public String getName() {
         return name;
     }
 
-    public double value() {
+    public double getValue() {
         return value;
     }
 }

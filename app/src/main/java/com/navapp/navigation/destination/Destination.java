@@ -28,19 +28,19 @@ public class Destination {
         this.comment = comment;
         isDelivered = false;
     }
-    public Address address() {
+    public Address getAddress() {
         return address;
     }
 
-    public double rate() {
-        return rate.value();
+    public double getRate() {
+        return rate.getValue();
     }
 
-    public Uri callUri() {
-        return phoneNumber.callUri();
+    public Uri getCallUri() {
+        return phoneNumber.getCallUri();
     }
 
-    public String comment() {
+    public String getComment() {
         return comment;
     }
 

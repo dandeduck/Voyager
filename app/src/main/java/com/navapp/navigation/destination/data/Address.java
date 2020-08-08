@@ -9,11 +9,11 @@ public class Address {
         this.longitude = longitude;
     }
 
-    public double latitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public double longitude() {
+    public double getLongitude() {
         return longitude;
     }
 }

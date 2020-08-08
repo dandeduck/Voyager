@@ -11,7 +11,7 @@ public class RouteHandler {
     private final Deque<Destination> remaining;
 
     public RouteHandler(Route route) {
-        this(route, new ArrayDeque<>(route.destinations()));
+        this(route, new ArrayDeque<>(route.getDestinations()));
     }
 
     public RouteHandler(Route route, Deque<Destination> remaining) {
@@ -22,11 +22,11 @@ public class RouteHandler {
     public RouteHandler addDestination(Address currentAddress, Destination newDestination) {
         remaining.add(newDestination);
 
-        return new RouteHandler(route.addDestination(newDestination), RoutOptimizer.optimizeRoute(currentAddress, remaining, route.end()));
+        return new RouteHandler(route.addDestination(newDestination), RouteOptimizer.optimizeRoute(currentAddress, remaining, route.getEnd()));
     }
 
     public RouteHandler changeEnd(Address currentAddress, Address endAddress) {
-        return new RouteHandler(route.changeEnd(endAddress), RoutOptimizer.optimizeRoute(currentAddress, remaining, endAddress));
+        return new RouteHandler(route.changeEnd(endAddress), RouteOptimizer.optimizeRoute(currentAddress, remaining, endAddress));
     }
 
     public Destination nextDestination() {
@@ -36,8 +36,8 @@ public class RouteHandler {
     public double sum() {
         double sum = 0;
 
-        for (Destination dest: route.destinations()) {
-            sum += dest.isDelivered() ? dest.rate() : 0;
+        for (Destination dest: route.getDestinations()) {
+            sum += dest.isDelivered() ? dest.getRate() : 0;
         }
 
         return sum;

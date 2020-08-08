@@ -28,11 +28,11 @@ public class Route {
         return new Route(destinations, end);
     }
 
-    public List<Destination> destinations() {
+    public List<Destination> getDestinations() {
         return Collections.unmodifiableList(destinations);
     }
 
-    public Address end() {
+    public Address getEnd() {
         return end;
     }
 }

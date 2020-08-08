@@ -21,7 +21,7 @@ public class PhoneNumber {
             throw new IllegalArgumentException("Invalid number");
     }
 
-    public Uri callUri() {
+    public Uri getCallUri() {
         if(isEmpty())
             throw new IllegalArgumentException("Cannot call an empty phone number");
         return Uri.parse("tel:"+number);
