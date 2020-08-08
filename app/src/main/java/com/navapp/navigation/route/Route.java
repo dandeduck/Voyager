@@ -24,8 +24,9 @@ public class Route {
     }
 
     public Route addDestination(Destination destination) {
-        destinations.add(destination);
-        return new Route(destinations, end);
+        List<Destination> newList = new ArrayList<>(destinations);
+        newList.add(destination);
+        return new Route(newList, end);
     }
 
     public List<Destination> getDestinations() {
