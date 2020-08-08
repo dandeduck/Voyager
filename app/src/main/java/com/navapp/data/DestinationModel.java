@@ -8,15 +8,15 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "destinations",
         foreignKeys = {
-                @ForeignKey(entity = Route.class,
+                @ForeignKey(entity = RouteModel.class,
                         parentColumns = "id",
                         childColumns = "route_id",
                         onDelete = ForeignKey.CASCADE),
-                @ForeignKey(entity = Rate.class,
+                @ForeignKey(entity = RateModel.class,
                         parentColumns = "id",
                         childColumns = "rate_id",
                         onDelete = ForeignKey.CASCADE),
-                @ForeignKey(entity = Address.class,
+                @ForeignKey(entity = AddressModel.class,
                         parentColumns = "id",
                         childColumns = "address_id",
                         onDelete = ForeignKey.CASCADE)
@@ -27,7 +27,7 @@ import androidx.room.PrimaryKey;
                 @Index("address_id")
         }
 )
-public class Destination {
+public class DestinationModel {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private long id;
@@ -44,7 +44,7 @@ public class Destination {
     @ColumnInfo(name = "route_id")
     private long routeId;
 
-    public Destination(String phoneNumber, String comment, long addressId, long rateId) {
+    public DestinationModel(String phoneNumber, String comment, long addressId, long rateId) {
         this.phoneNumber = phoneNumber;
         this.comment = comment;
 

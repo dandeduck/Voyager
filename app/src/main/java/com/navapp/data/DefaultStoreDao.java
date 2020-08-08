@@ -9,12 +9,12 @@ import androidx.room.Update;
 @Dao
 public interface DefaultStoreDao {
     @Query("SELECT * FROM defaults WHERE `table_type` = :table")
-    DefaultStore getDefaultByTable(DefaultStoreTable table);
+    DefaultStoreModel getDefaultByTable(DefaultStoreTable table);
 
     @Insert
-    void insert(DefaultStore store);
+    void insert(DefaultStoreModel store);
     @Update
-    void update(DefaultStore store);
+    void update(DefaultStoreModel store);
     @Delete
-    void delete(DefaultStore store);
+    void delete(DefaultStoreModel store);
 }

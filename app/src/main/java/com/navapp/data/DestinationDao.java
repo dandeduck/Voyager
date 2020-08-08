@@ -11,16 +11,16 @@ import androidx.room.Update;
 @Dao
 public interface DestinationDao {
     @Query("SELECT * FROM destinations")
-    List<Destination> getAll();
+    List<DestinationModel> getAll();
     @Query("SELECT * FROM destinations WHERE destinations.route_id = :routeId")
-    List<Destination> getByRouteId(long routeId);
+    List<DestinationModel> getByRouteId(long routeId);
     @Query("SELECT * FROM destinations WHERE destinations.route_id = -1")
-    List<Destination> getWithoutRoute();
+    List<DestinationModel> getWithoutRoute();
 
     @Insert
-    void insert(Destination... destinations);
+    void insert(DestinationModel... destinations);
     @Update
-    void update(Destination... destinations);
+    void update(DestinationModel... destinations);
     @Delete
-    void delete(Destination... destinations);
+    void delete(DestinationModel... destinations);
 }

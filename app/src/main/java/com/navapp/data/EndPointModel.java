@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "endpoints",
             foreignKeys = {
-                    @ForeignKey(entity = Address.class,
+                    @ForeignKey(entity = AddressModel.class,
                             parentColumns = "id",
                             childColumns = "address_id",
                             onDelete = ForeignKey.CASCADE)
@@ -18,7 +18,7 @@ import androidx.room.PrimaryKey;
                 @Index("address_id")
             }
 )
-public class EndPoint {
+public class EndPointModel {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private long id;
@@ -30,7 +30,7 @@ public class EndPoint {
     @ColumnInfo(name = "address_id")
     private long addressId;
 
-    public EndPoint(@NonNull String name, long addressId) {
+    public EndPointModel(@NonNull String name, long addressId) {
         this.name = name;
         this.addressId = addressId;
     }

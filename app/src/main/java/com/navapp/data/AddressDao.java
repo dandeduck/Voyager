@@ -11,12 +11,12 @@ import androidx.room.Update;
 @Dao
 public interface AddressDao {
     @Query("SELECT * FROM addresses")
-    List<Address> getAll();
+    List<AddressModel> getAll();
 
     @Insert
-    void insert(Address... addresses);
+    void insert(AddressModel... addresses);
     @Update
-    void update(Address... addresses);
+    void update(AddressModel... addresses);
     @Delete
-    void delete(Address... addresses);
+    void delete(AddressModel... addresses);
 }

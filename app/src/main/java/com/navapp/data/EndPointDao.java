@@ -11,14 +11,14 @@ import androidx.room.Update;
 @Dao
 public interface EndPointDao {
     @Query("SELECT * FROM endpoints")
-    List<EndPoint> getAll();
+    List<EndPointModel> getAll();
     @Query("SELECT * FROM endpoints WHERE endpoints.id = :id")
-    EndPoint getById(long id);
+    EndPointModel getById(long id);
 
     @Insert
-    void insert(EndPoint... endPoints);
+    void insert(EndPointModel... endPoints);
     @Update
-    void update(EndPoint... endPoints);
+    void update(EndPointModel... endPoints);
     @Delete
-    void delete(EndPoint... endPoints);
+    void delete(EndPointModel... endPoints);
 }

@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "rates")
-public class Rate {
+public class RateModel {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private long id;
@@ -17,7 +17,7 @@ public class Rate {
     @ColumnInfo(name = "price")
     private double price;
 
-    public Rate(@NonNull String name, double price) {
+    public RateModel(@NonNull String name, double price) {
         this.name = name;
         this.price = price;
     }

@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "routes")
-public class Route {
+public class RouteModel {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private long id;
@@ -15,7 +15,7 @@ public class Route {
     @NonNull
     private String name;
 
-    public Route(@NonNull String name) {
+    public RouteModel(@NonNull String name) {
         this.name = name;
     }
 

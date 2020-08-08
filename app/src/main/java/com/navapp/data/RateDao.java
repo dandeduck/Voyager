@@ -2,7 +2,6 @@ package com.navapp.data;
 
 import java.util.List;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -12,14 +11,14 @@ import androidx.room.Update;
 @Dao
 public interface RateDao {
     @Query("SELECT * FROM rates")
-    List<Rate> getAll();
+    List<RateModel> getAll();
     @Query("SELECT * FROM rates WHERE rates.id = :id")
-    Rate getById(long id);
+    RateModel getById(long id);
 
     @Insert
-    void insert(Rate... rate);
+    void insert(RateModel... rate);
     @Update
-    void update(Rate... rate);
+    void update(RateModel... rate);
     @Delete
-    void delete(Rate... rate);
+    void delete(RateModel... rate);
 }

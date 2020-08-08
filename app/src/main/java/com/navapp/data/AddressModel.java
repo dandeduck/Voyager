@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "addresses")
-public class Address {
+public class AddressModel {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private long id;
@@ -20,7 +20,7 @@ public class Address {
     @ColumnInfo(name = "latitude")
     private long latitude;
 
-    public Address(@NonNull String rawAddress, long longitude, long latitude) {
+    public AddressModel(@NonNull String rawAddress, long longitude, long latitude) {
         this.rawAddress = rawAddress;
         this.longitude = longitude;
         this.latitude = latitude;

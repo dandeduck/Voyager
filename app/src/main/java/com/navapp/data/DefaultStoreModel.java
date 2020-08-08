@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "defaults")
-public class DefaultStore {
+public class DefaultStoreModel {
 
     @PrimaryKey
     @ColumnInfo(name = "table_type")
@@ -13,7 +13,7 @@ public class DefaultStore {
     @ColumnInfo(name = "row_id")
     private long rowId;
 
-    public DefaultStore(DefaultStoreTable table, long rowId) {
+    public DefaultStoreModel(DefaultStoreTable table, long rowId) {
         this.table = table;
         this.rowId = rowId;
     }

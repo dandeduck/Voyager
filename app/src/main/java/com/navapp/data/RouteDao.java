@@ -11,12 +11,12 @@ import androidx.room.Update;
 @Dao
 public interface RouteDao {
     @Query("SELECT * FROM routes")
-    List<Route> getAll();
+    List<RouteModel> getAll();
 
     @Insert
-    void insert(Route... routes);
+    void insert(RouteModel... routes);
     @Update
-    void update(Route... routes);
+    void update(RouteModel... routes);
     @Delete
-    void delete(Route... routes);
+    void delete(RouteModel... routes);
 }
