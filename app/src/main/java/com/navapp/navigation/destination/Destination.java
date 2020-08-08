@@ -1,7 +1,5 @@
 package com.navapp.navigation.destination;
 
-import android.net.Uri;
-
 import com.navapp.navigation.destination.data.Address;
 import com.navapp.navigation.destination.data.PhoneNumber;
 import com.navapp.navigation.destination.data.Rate;
@@ -32,12 +30,12 @@ public class Destination {
         return address;
     }
 
-    public double getRate() {
-        return rate.getValue();
+    public Rate getRate() {
+        return rate;
     }
 
-    public Uri getCallUri() {
-        return phoneNumber.getCallUri();
+    public PhoneNumber getPhoneNumber() {
+        return phoneNumber;
     }
 
     public String getComment() {
