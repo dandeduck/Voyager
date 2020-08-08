@@ -27,7 +27,7 @@ public class PhoneNumber {
         return Uri.parse("tel:"+number);
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return number.equals(EMPTY_PHONE_NUMBER);
     }
 }
