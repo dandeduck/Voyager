@@ -14,7 +14,7 @@ public interface RouteDao {
     List<RouteModel> getAll();
 
     @Insert
-    void insert(RouteModel... routes);
+    long[] insert(RouteModel... routes);
     @Update
     void update(RouteModel... routes);
     @Delete

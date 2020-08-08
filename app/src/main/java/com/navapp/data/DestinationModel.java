@@ -1,5 +1,7 @@
 package com.navapp.data;
 
+import java.util.Objects;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -42,7 +44,7 @@ public class DestinationModel {
     @ColumnInfo(name = "rate_id")
     private long rateId;
     @ColumnInfo(name = "route_id")
-    private long routeId;
+    private Long routeId;
 
     public DestinationModel(String phoneNumber, String comment, long addressId, long rateId) {
         this.phoneNumber = phoneNumber;
@@ -50,7 +52,7 @@ public class DestinationModel {
 
         this.addressId = addressId;
         this.rateId = rateId;
-        routeId = -1;
+        routeId = null;
     }
 
     long getId() {
@@ -88,10 +90,28 @@ public class DestinationModel {
         this.rateId = rateId;
     }
 
-    long getRouteId() {
+    Long getRouteId() {
         return routeId;
     }
-    void setRouteId(long routeId) {
+    void setRouteId(Long routeId) {
         this.routeId = routeId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DestinationModel that = (DestinationModel) o;
+        return id == that.id &&
+                addressId == that.addressId &&
+                rateId == that.rateId &&
+                Objects.equals(routeId, that.routeId) &&
+                Objects.equals(phoneNumber, that.phoneNumber) &&
+                Objects.equals(comment, that.comment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, phoneNumber, comment, addressId, rateId, routeId);
     }
 }

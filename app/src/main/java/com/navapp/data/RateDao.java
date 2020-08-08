@@ -16,7 +16,7 @@ public interface RateDao {
     RateModel getById(long id);
 
     @Insert
-    void insert(RateModel... rate);
+    long[] insert(RateModel... rate);
     @Update
     void update(RateModel... rate);
     @Delete

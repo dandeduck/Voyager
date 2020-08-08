@@ -1,5 +1,7 @@
 package com.navapp.data;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -32,5 +34,19 @@ public class RouteModel {
     @NonNull
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RouteModel that = (RouteModel) o;
+        return id == that.id &&
+                name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }

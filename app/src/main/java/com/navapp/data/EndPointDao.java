@@ -16,7 +16,7 @@ public interface EndPointDao {
     EndPointModel getById(long id);
 
     @Insert
-    void insert(EndPointModel... endPoints);
+    long[] insert(EndPointModel... endPoints);
     @Update
     void update(EndPointModel... endPoints);
     @Delete

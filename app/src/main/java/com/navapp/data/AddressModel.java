@@ -1,5 +1,7 @@
 package com.navapp.data;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -53,5 +55,21 @@ public class AddressModel {
     }
     public void setLatitude(long latitude) {
         this.latitude = latitude;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AddressModel that = (AddressModel) o;
+        return id == that.id &&
+                longitude == that.longitude &&
+                latitude == that.latitude &&
+                rawAddress.equals(that.rawAddress);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, rawAddress, longitude, latitude);
     }
 }

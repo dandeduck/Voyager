@@ -18,7 +18,7 @@ public interface DestinationDao {
     List<DestinationModel> getWithoutRoute();
 
     @Insert
-    void insert(DestinationModel... destinations);
+    long[] insert(DestinationModel... destinations);
     @Update
     void update(DestinationModel... destinations);
     @Delete

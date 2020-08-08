@@ -1,5 +1,7 @@
 package com.navapp.data;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -55,5 +57,20 @@ public class EndPointModel {
     }
     public void setAddressId(long addressId) {
         this.addressId = addressId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EndPointModel that = (EndPointModel) o;
+        return id == that.id &&
+                addressId == that.addressId &&
+                name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, addressId);
     }
 }

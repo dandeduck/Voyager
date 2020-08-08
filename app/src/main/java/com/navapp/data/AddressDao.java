@@ -14,7 +14,7 @@ public interface AddressDao {
     List<AddressModel> getAll();
 
     @Insert
-    void insert(AddressModel... addresses);
+    long[] insert(AddressModel... addresses);
     @Update
     void update(AddressModel... addresses);
     @Delete
