@@ -1,6 +1,8 @@
 package com.navapp.navigation.destination.data;
 
-public class Address {
+import com.navapp.navigation.util.math.MathDestination;
+
+public class Address implements MathDestination {
     private final String addressName;
     private final double latitude;
     private final double longitude;
@@ -21,5 +23,10 @@ public class Address {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    @Override
+    public double cost(MathDestination destination) {
+        return 0;
     }
 }
