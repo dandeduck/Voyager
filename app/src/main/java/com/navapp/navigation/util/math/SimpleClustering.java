@@ -13,7 +13,7 @@ public class SimpleClustering implements ClusteringUtil {
     }
 
     @Override
-    public List<MathDestination> reduceClusters(MathDestination start, Collection<DestinationCluster> clusters, MathDestination end) {
+    public List<MathLocation> reduceClusters(MathLocation start, Collection<LocationCluster> clusters, MathLocation end) {
         return null;
     }
 }

@@ -1,25 +1,23 @@
 package com.navapp.navigation.route;
 
 import com.navapp.navigation.destination.Destination;
-import com.navapp.navigation.destination.data.Address;
+import com.navapp.navigation.destination.data.Location;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Deque;
 import java.util.List;
 
 public class Route {
     private final List<Destination> destinations;
-    private final Address end;
+    private final Location end;
 
-    public Route(Collection<Destination> destinations, Address end) {
+    public Route(Collection<Destination> destinations, Location end) {
         this.destinations = new ArrayList<>(destinations);
         this.end = end;
     }
 
-    public Route changeEnd(Address newEnd) {
+    public Route changeEnd(Location newEnd) {
         return new Route(destinations, newEnd);
     }
 
@@ -33,7 +31,7 @@ public class Route {
         return Collections.unmodifiableList(destinations);
     }
 
-    public Address getEnd() {
+    public Location getEnd() {
         return end;
     }
 }

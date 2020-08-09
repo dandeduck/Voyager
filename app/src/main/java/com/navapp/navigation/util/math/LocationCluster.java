@@ -4,15 +4,15 @@ import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
 
-public class DestinationCluster implements MathDestination{
-    private final Deque<MathDestination> destinations;
+public class LocationCluster implements MathLocation {
+    private final Deque<MathLocation> destinations;
 
-    public DestinationCluster(MathDestination start, Collection<MathDestination> destinations, MathDestination end, TSPSolver solver) {
+    public LocationCluster(MathLocation start, Collection<MathLocation> destinations, MathLocation end, TSPSolver solver) {
         this.destinations = new ArrayDeque<>(solver.solve(start, destinations, end));
     }
 
     @Override
-    public double cost(MathDestination destination) {
+    public double cost(MathLocation destination) {
         return Math.min(destinations.getFirst().cost(destination), destinations.getLast().cost(destination));
     }
 }

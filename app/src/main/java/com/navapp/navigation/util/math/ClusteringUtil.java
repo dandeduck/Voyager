@@ -4,5 +4,5 @@ import java.util.Collection;
 import java.util.List;
 
 public interface ClusteringUtil {
-    List<MathDestination> reduceClusters(MathDestination start, Collection<DestinationCluster> clusters, MathDestination end);
+    List<MathLocation> reduceClusters(MathLocation start, Collection<LocationCluster> clusters, MathLocation end);
 }

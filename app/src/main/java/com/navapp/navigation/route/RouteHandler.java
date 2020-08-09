@@ -1,7 +1,7 @@
 package com.navapp.navigation.route;
 
 import com.navapp.navigation.destination.Destination;
-import com.navapp.navigation.destination.data.Address;
+import com.navapp.navigation.destination.data.Location;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -21,14 +21,14 @@ public class RouteHandler {
         this.optimizer = optimizer;
     }
 
-    public RouteHandler addDestination(Address currentAddress, Destination newDestination) {
+    public RouteHandler addDestination(Location currentLocation, Destination newDestination) {
         remaining.add(newDestination);
 
-        return new RouteHandler(route.addDestination(newDestination), optimizer.optimizeRoute(currentAddress, remaining, route.getEnd()), optimizer);
+        return new RouteHandler(route.addDestination(newDestination), optimizer.optimizeRoute(currentLocation, remaining, route.getEnd()), optimizer);
     }
 
-    public RouteHandler changeEnd(Address currentAddress, Address endAddress) {
-        return new RouteHandler(route.changeEnd(endAddress), optimizer.optimizeRoute(currentAddress, remaining, endAddress), optimizer);
+    public RouteHandler changeEnd(Location currentLocation, Location endLocation) {
+        return new RouteHandler(route.changeEnd(endLocation), optimizer.optimizeRoute(currentLocation, remaining, endLocation), optimizer);
     }
 
     public Destination nextDestination() {
