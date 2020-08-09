@@ -99,4 +99,37 @@ public class DefaultStoreModelTest {
         DefaultStoreModel storedModel = dao.getDefaultByTable(DefaultStoreTable.RATE);
         assertThat(storedModel, nullValue(DefaultStoreModel.class));
     }
+
+    @Test
+    public void upsertAndRead_doesNotHaveRow_finishesSuccessfully() throws Exception {
+        final DefaultStoreModel INSERT_MODEL = new DefaultStoreModel(
+                DefaultStoreTable.RATE,
+                fakeModels.makeFakeRate().getId()
+        );
+
+        dao.upsert(INSERT_MODEL);
+
+        List<DefaultStoreModel> models = dao.getAll();
+        assertThat(models, hasSize(1));
+        assertThat(models.get(0), equalTo(INSERT_MODEL));
+    }
+
+    @Test
+    public void upsertAndRead_hasRow_finishesSuccessfully() throws Exception {
+        final DefaultStoreModel INSERT_MODEL = new DefaultStoreModel(
+                DefaultStoreTable.RATE,
+                fakeModels.makeFakeRate().getId()
+        );
+        dao.upsert(INSERT_MODEL);
+
+        final DefaultStoreModel UPDATE_MODEL = new DefaultStoreModel(
+                DefaultStoreTable.RATE,
+                fakeModels.makeFakeRate().getId()
+        );
+        dao.upsert(UPDATE_MODEL);
+
+        List<DefaultStoreModel> models = dao.getAll();
+        assertThat(models, hasSize(1));
+        assertThat(models.get(0), equalTo(UPDATE_MODEL));
+    }
 }
