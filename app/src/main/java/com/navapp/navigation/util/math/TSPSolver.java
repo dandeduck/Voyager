@@ -4,5 +4,5 @@ import java.util.Collection;
 import java.util.Queue;
 
 public interface TSPSolver {
-    Queue<MathLocation> solve(MathLocation start, Collection<MathLocation> destinations, MathLocation end);
+    Queue<MathLocation> solve(MathLocation start, Collection<MathLocation> locations, MathLocation end);
 }
