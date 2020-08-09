@@ -4,18 +4,18 @@ import com.navapp.navigation.destination.Destination;
 import com.navapp.navigation.destination.data.Address;
 
 import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Queue;
 
 public class RouteHandler {
     private final Route route;
-    private final Deque<Destination> remaining;
+    private final Queue<Destination> remaining;
     private final RouteOptimizer optimizer;
 
     public RouteHandler(Route route, RouteOptimizer optimizer) {
         this(route, new ArrayDeque<>(route.getDestinations()), optimizer);
     }
 
-    public RouteHandler(Route route, Deque<Destination> remaining, RouteOptimizer optimizer) {
+    public RouteHandler(Route route, Queue<Destination> remaining, RouteOptimizer optimizer) {
         this.route = route;
         this.remaining = remaining;
         this.optimizer = optimizer;
