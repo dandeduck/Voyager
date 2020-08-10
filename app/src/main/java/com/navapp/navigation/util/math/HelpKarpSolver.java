@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Queue;
 
 //This class is based on the code from the Heuristics-TSP library by Sinclert Pérez, @Sinclert on Github, see Heuristics-TSP-license.md
-public class HelpKarpSolver implements TSPSolver {
+public class HelpKarpSolver<T extends MathLocation> implements TSPSolver<T> {
     @Override
-    public Queue<MathLocation> solve(MathLocation start, List<MathLocation> locations, MathLocation end) {
-        List<MathLocation> combinedLocations = new ArrayList<>();
+    public Queue<T> solve(T start, List<T> locations, T end) {
+        List<T> combinedLocations = new ArrayList<>();
         combinedLocations.add(start);
         combinedLocations.addAll(locations);
         combinedLocations.add(end);
@@ -31,12 +31,12 @@ public class HelpKarpSolver implements TSPSolver {
         return solve(costs, combinedLocations);
     }
 
-    public Queue<MathLocation> solve(Double[][] costs, List<MathLocation> allLocations) {
+    public Queue<T> solve(Double[][] costs, List<T> allLocations) {
 
         return null;
     }
 
-    private Queue<MathLocation> solve(Double[][] costs, int initial, double costUntilHere, Double[] vertices, List<MathLocation> allLocations) {
+    private Queue<T> solve(Double[][] costs, int initial, double costUntilHere, Double[] vertices, List<T> allLocations) {
 
         return null;
     }

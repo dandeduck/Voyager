@@ -3,17 +3,17 @@ package com.navapp.navigation.util.math;
 import java.util.Collection;
 import java.util.List;
 
-public class SimpleClustering implements ClusteringUtil {
+public class LeastLocationClusterReduction implements ClusteringReducer {
     private final int maxClusterCount;
     private final TSPSolver solver;
 
-    public SimpleClustering(int maxClusterCount, TSPSolver solver) {
+    public LeastLocationClusterReduction(int maxClusterCount, TSPSolver solver) {
         this.maxClusterCount = maxClusterCount;
         this.solver = solver;
     }
 
     @Override
-    public List<MathLocation> reduceClusters(MathLocation start, Collection<LocationCluster> clusters, MathLocation end) {
+    public List<LocationCluster> reduceClusters(Collection<LocationCluster> clusters) {
         return null;
     }
 }
