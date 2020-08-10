@@ -8,5 +8,5 @@ import java.util.Deque;
 import java.util.Queue;
 
 public interface RouteOptimizer {
-    Queue<Destination> optimizeRoute(Address start, Collection<Destination> destinations, Address end);
+    Queue<Destination> orderRoute(Address start, Route route);
 }
