@@ -1,6 +1,7 @@
 package com.navapp.navigation.util.math;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -19,7 +20,7 @@ public class LocationCluster implements MathLocation {
     }
 
     public LocationCluster order(MathLocation start, MathLocation end, TSPSolver solver) {
-        return new LocationCluster(new ArrayDeque<>(solver.solve(start, locations, end)));
+        return new LocationCluster(new ArrayDeque<>(solver.solve(start, new ArrayList<>(locations), end)));
     }
 
     @Override
