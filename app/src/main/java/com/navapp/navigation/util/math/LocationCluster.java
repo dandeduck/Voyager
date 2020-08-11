@@ -19,6 +19,13 @@ public class LocationCluster implements MathLocation {
         this.locations = new ArrayList<>(locations);
     }
 
+    public LocationCluster then(LocationCluster nextCluster) {
+        List<MathLocation> combinedList = new ArrayList<>(locations);
+        combinedList.addAll(nextCluster.locations);
+
+        return new LocationCluster(combinedList);
+    }
+
     public LocationCluster order(MathLocation start, MathLocation end, TSPSolver<MathLocation> solver) {
         return new LocationCluster(new ArrayDeque<>(solver.solve(start, new ArrayList<>(locations), end)));
     }
@@ -37,7 +44,15 @@ public class LocationCluster implements MathLocation {
         return minCost;
     }
 
+    public boolean isCloserToTheEnd(MathLocation location) {
+        return location.cost(locations.get(0)) > location.cost(locations.get(locations.size()-1));
+    }
+
     public Collection<MathLocation> getLocations() {
         return locations;
+    }
+
+    public int size() {
+        return locations.size();
     }
 }
