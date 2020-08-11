@@ -40,10 +40,6 @@ public class HelpKarpSolver<T extends MathLocation> implements TSPSolver<T> {
         return solve(costs, combinedLocations);
     }
 
-    public double getOptimalCost() {
-        return optimalCost;
-    }
-
     public Queue<T> solve(Double[][] costs, List<T> allLocations) {
         resetVars();
         int[] vertices = new int[costs.length - 1];
