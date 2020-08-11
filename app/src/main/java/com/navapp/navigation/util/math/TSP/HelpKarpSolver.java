@@ -1,10 +1,11 @@
-package com.navapp.navigation.util.math;
+package com.navapp.navigation.util.math.TSP;
+
+import com.navapp.navigation.util.math.MathLocation;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.atomic.AtomicReference;
 
 //This class is based on the code from the Heuristics-TSP library by Sinclert Pérez, @Sinclert on Github, see Heuristics-TSP-license.md
 public class HelpKarpSolver<T extends MathLocation> implements TSPSolver<T> {

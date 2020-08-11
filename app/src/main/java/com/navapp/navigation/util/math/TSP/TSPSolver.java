@@ -1,4 +1,6 @@
-package com.navapp.navigation.util.math;
+package com.navapp.navigation.util.math.TSP;
+
+import com.navapp.navigation.util.math.MathLocation;
 
 import java.util.List;
 import java.util.Queue;

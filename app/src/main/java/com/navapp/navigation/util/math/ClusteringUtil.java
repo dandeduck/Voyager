@@ -1,5 +1,7 @@
 package com.navapp.navigation.util.math;
 
+import com.navapp.navigation.util.math.TSP.TSPSolver;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
