@@ -34,7 +34,7 @@ public class OptimizingRouteFactory implements RouteFactory{
         List<String> destinationIds = new ArrayList<>();
 
         for (Destination destination: destinations)
-            destinationIds.add(destination.getLocation().getId());
+            destinationIds.add(destination.getLocationId());
 
         return destinationIds;
     }
@@ -50,12 +50,12 @@ public class OptimizingRouteFactory implements RouteFactory{
         for (int i = 0; i < destinations.size(); ++i) {
             if(isEqualId(destinations.get(i), id)) {
                 Destination removed = destinations.remove(i);
-                destinations.add(removed.changeLocation(new Location(id)));
+                destinations.add(removed.changeLocation(id));
             }
         }
     }
 
     private boolean isEqualId(Destination destination, String id) {
-        return destination.getLocation().getId().equals(id);
+        return destination.getLocationId().equals(id);
     }
 }

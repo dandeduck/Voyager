@@ -12,11 +12,11 @@ public class Destination {
     private boolean isDelivered;
 
     public Destination(Location location) {
-        this(location, Rate.empty(), PhoneNumber.empty(), "");
+        this(location, Rate.empty());
     }
 
     public Destination(Location location, Rate rate) {
-        this(location, rate, PhoneNumber.empty(), "");
+        this(location, rate, PhoneNumber.empty());
     }
 
     public Destination(Location location, Rate rate, PhoneNumber phoneNumber) {
@@ -31,12 +31,16 @@ public class Destination {
         isDelivered = false;
     }
 
+    public Destination changeLocation(String newLocationId) {
+        return changeLocation(new Location(newLocationId));
+    }
+
     public Destination changeLocation(Location newLocation) {
         return new Destination(newLocation, rate, phoneNumber, comment);
     }
 
-    public Location getLocation() {
-        return location;
+    public String getLocationId() {
+        return location.getId();
     }
 
     public Rate getRate() {
