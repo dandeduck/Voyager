@@ -1,5 +1,5 @@
 package com.navapp.navigation.util.math;
 
-public interface MathLocation {
-    double cost(MathLocation locations);
+public interface GraphLocation {
+    double distance(GraphLocation locations);
 }

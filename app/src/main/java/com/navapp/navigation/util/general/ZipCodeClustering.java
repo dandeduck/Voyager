@@ -35,15 +35,6 @@ public class ZipCodeClustering {
                 zipCodes.put(zipCode, new LocationCluster(location));
         }
 
-        return extractClustersFromMap();
-    }
-
-    private List<LocationCluster> extractClustersFromMap() {
-        List<LocationCluster> clusters = new ArrayList<>();
-
-        for (String zipCode : zipCodes.keySet())
-            clusters.add(zipCodes.remove(zipCode));
-
-        return clusters;
+        return new ArrayList<>(zipCodes.values());
     }
 }

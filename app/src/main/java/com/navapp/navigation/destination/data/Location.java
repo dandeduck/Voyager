@@ -3,12 +3,12 @@ package com.navapp.navigation.destination.data;
 import android.location.Address;
 import android.location.Geocoder;
 
-import com.navapp.navigation.util.math.MathLocation;
+import com.navapp.navigation.util.math.GraphLocation;
 
 import java.io.IOException;
 import java.util.List;
 
-public class Location implements MathLocation {
+public class Location implements GraphLocation {
     private final Address address;
     private final android.location.Location location;
 
@@ -32,7 +32,7 @@ public class Location implements MathLocation {
     }
 
     @Override
-    public double cost(MathLocation destination) {
+    public double distance(GraphLocation destination) {
         if(!isLocation(destination))
             throw new IllegalArgumentException("Given Math location is not a Location");
         return location.distanceTo(((Location)destination).location);
