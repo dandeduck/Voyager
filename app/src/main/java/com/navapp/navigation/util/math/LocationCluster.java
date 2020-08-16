@@ -17,17 +17,17 @@ public class LocationCluster implements GraphLocation {
     }
 
     @Override
-    public double distance(GraphLocation otherLocation) {
-        double minCost = Double.MAX_VALUE;
+    public long distance(GraphLocation otherLocation) {
+        long minDistance = Long.MAX_VALUE;
 
         for (GraphLocation location : locations) {
-            double cost = location.distance(otherLocation);
+            long distance = location.distance(otherLocation);
 
-            if(cost < minCost)
-                minCost = cost;
+            if(distance < minDistance)
+                minDistance = distance;
         }
 
-        return minCost;
+        return minDistance;
     }
 
     public Collection<GraphLocation> getLocations() {

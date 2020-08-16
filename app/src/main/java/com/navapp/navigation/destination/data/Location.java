@@ -32,10 +32,10 @@ public class Location implements GraphLocation {
     }
 
     @Override
-    public double distance(GraphLocation destination) {
+    public long distance(GraphLocation destination) {
         if(!isLocation(destination))
             throw new IllegalArgumentException("Given Math location is not a Location");
-        return location.distanceTo(((Location)destination).location);
+        return (long) location.distanceTo(((Location)destination).location);
     }
 
     public Address getAddress() {
