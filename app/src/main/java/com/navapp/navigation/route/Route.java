@@ -11,8 +11,8 @@ import java.util.List;
 public class Route {
     private final List<Destination> destinations;
 
-    public Route(Collection<Destination> destinations) {
-        this.destinations = new ArrayList<>(destinations);
+    public Route(List<Destination> destinations) {
+        this.destinations = destinations;
     }
 
     public List<Destination> getDestinations() {
