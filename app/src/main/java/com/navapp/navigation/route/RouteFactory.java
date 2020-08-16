@@ -3,8 +3,8 @@ package com.navapp.navigation.route;
 import com.navapp.navigation.destination.Destination;
 import com.navapp.navigation.destination.data.Location;
 
-import java.util.Queue;
+import java.util.List;
 
-public interface RouteOptimizer {
-    Queue<Destination> orderRoute(Location start, Route route);
+public interface RouteFactory {
+    Route create(Location start, List<Destination> destinations, Location end);
 }
