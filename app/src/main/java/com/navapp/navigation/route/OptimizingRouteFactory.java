@@ -53,7 +53,7 @@ public class OptimizingRouteFactory implements RouteFactory{
         for (int i = 0; i < destinations.size(); ++i)
             if(isEqualId(destinations.get(i), id))
                 return destinations.remove(i);
-        return null;
+        throw new IllegalArgumentException("No destination with given place id");
     }
 
     private boolean isEqualId(Destination destination, String id) {
