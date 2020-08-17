@@ -24,9 +24,9 @@ public class OptimizingRouteFactory implements RouteFactory{
     public Route create(Location start, List<Destination> destinations, Location end) throws InterruptedException, ApiException, IOException {
         List<String> destinationIds = extractIds(destinations);
         List<String> orderedDestinationIds = routePlanner.orderedRouteIds(start.getId(), destinationIds, end.getId());
-        combineDestinationsWithNewIds(destinations, orderedDestinationIds, end);
+        List<Destination> orderedDestinations = orderDestinationsByIds(destinations, orderedDestinationIds, end);
 
-        return new Route(destinations);
+        return new Route(orderedDestinations);
     }
 
     private List<String> extractIds(List<Destination> destinations) {
@@ -38,20 +38,22 @@ public class OptimizingRouteFactory implements RouteFactory{
         return destinationIds;
     }
 
-    private void combineDestinationsWithNewIds(List<Destination> destinations, List<String> orderedIds, Location end) {
-        for (int i = 0; i < orderedIds.size()-1; ++i)
-            replaceDestinationWithMatchingId(destinations, orderedIds.get(i));
+    private List<Destination> orderDestinationsByIds(List<Destination> destinations, List<String> orderedIds, Location end) {
+        List<Destination> orderedDestinations = new ArrayList<>();
 
-        destinations.add(new Destination(end));
+        for (int i = 0; i < orderedIds.size()-1; ++i)
+            orderedDestinations.add(correspondingDestination(destinations, orderedIds.get(i)));
+
+        orderedDestinations.add(new Destination(end));
+
+        return orderedDestinations;
     }
 
-    private void replaceDestinationWithMatchingId(List<Destination> destinations, String id) {
-        for (int i = 0; i < destinations.size(); ++i) {
-            if(isEqualId(destinations.get(i), id)) {
-                Destination removed = destinations.remove(i);
-                destinations.add(removed.changeLocation(id));
-            }
-        }
+    private Destination correspondingDestination(List<Destination> destinations, String id) {
+        for (int i = 0; i < destinations.size(); ++i)
+            if(isEqualId(destinations.get(i), id))
+                return destinations.remove(i);
+        return null;
     }
 
     private boolean isEqualId(Destination destination, String id) {
