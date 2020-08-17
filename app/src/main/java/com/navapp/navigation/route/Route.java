@@ -15,4 +15,13 @@ public class Route {
     public List<Destination> getDestinations() {
         return Collections.unmodifiableList(destinations);
     }
+
+    public double getSum() {
+        double sum = 0;
+
+        for (Destination destinatoin : destinations)
+            sum += destinatoin.getRate().getValue();
+
+        return sum;
+    }
 }
