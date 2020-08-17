@@ -1,4 +1,4 @@
-package com.navapp.navigation.requests;
+package com.navapp.navigation.destination;
 
 import com.google.maps.GeoApiContext;
 import com.google.maps.PlaceAutocompleteRequest;

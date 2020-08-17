@@ -4,7 +4,6 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
 import com.navapp.navigation.destination.Destination;
 import com.navapp.navigation.destination.data.Location;
-import com.navapp.navigation.requests.RoutePlanner;
 
 import java.io.IOException;
 import java.util.ArrayList;

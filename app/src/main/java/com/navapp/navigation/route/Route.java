@@ -1,10 +1,7 @@
 package com.navapp.navigation.route;
 
 import com.navapp.navigation.destination.Destination;
-import com.navapp.navigation.destination.data.Location;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

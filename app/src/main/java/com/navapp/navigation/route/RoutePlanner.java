@@ -1,4 +1,4 @@
-package com.navapp.navigation.requests;
+package com.navapp.navigation.route;
 
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
