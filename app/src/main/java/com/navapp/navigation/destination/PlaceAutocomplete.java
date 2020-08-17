@@ -19,7 +19,7 @@ public class PlaceAutocomplete {
         this.sessionToken = sessionToken;
     }
 
-    List<AutocompletePrediction> predictions(String address) throws InterruptedException, ApiException, IOException {
+    public List<AutocompletePrediction> getPredictions(String address) throws InterruptedException, ApiException, IOException {
         return Arrays.asList(PlacesApi.placeAutocomplete(context, address, sessionToken).await());
     }
 }
