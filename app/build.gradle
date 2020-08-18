@@ -38,8 +38,8 @@ android {
 
 dependencies {
     implementation 'com.google.maps:google-maps-services:0.15.0'
-    runtimeOnly 'org.slf4j:slf4j-simple:1.7.25'
-    
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.25' //In google maps services Github they say to add this dependency to prevent some error or something
+
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 

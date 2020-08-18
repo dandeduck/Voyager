@@ -16,7 +16,7 @@ public class Route {
         return Collections.unmodifiableList(destinations);
     }
 
-    public double getSum() {
+    public double calcRateSum() {
         double sum = 0;
 
         for (Destination destinatoin : destinations)
