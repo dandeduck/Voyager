@@ -1,4 +1,3 @@
-
 Copyright (c) 2020 Daniel Mikhailov and Tom Tzook
 
 "Anti 996" License Version 1.0 (Draft)
