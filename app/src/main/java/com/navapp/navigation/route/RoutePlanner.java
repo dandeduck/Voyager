@@ -11,9 +11,12 @@ import java.util.List;
 
 public class RoutePlanner {
     private final GeoApiContext context;
+    private final DirectionsApi.RouteRestriction[] restrictions;
 
-    public RoutePlanner(GeoApiContext context) {
+    public RoutePlanner(GeoApiContext context, List<DirectionsApi.RouteRestriction> restrictions) {
         this.context = context;
+        DirectionsApi.RouteRestriction[] tmp = new DirectionsApi.RouteRestriction[restrictions.size()];
+        this.restrictions = restrictions.toArray(tmp);
     }
 
     public List<String> orderedRouteIds(String originId, List<String> waypointIds, String destinationId) throws InterruptedException, ApiException, IOException {
@@ -21,6 +24,7 @@ public class RoutePlanner {
                 .originPlaceId(originId)
                 .waypointsFromPlaceIds(toArray(waypointIds))
                 .destinationPlaceId(destinationId)
+                .avoid(restrictions)
                 .optimizeWaypoints(true)
                 .await().geocodedWaypoints;
 

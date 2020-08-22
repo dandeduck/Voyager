@@ -1,5 +1,6 @@
 package com.navapp.navigation.route;
 
+import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.errors.ApiException;
 import com.navapp.navigation.destination.Destination;
@@ -12,8 +13,8 @@ import java.util.List;
 public class OptimizingRouteFactory implements RouteFactory{
     private final RoutePlanner routePlanner;
 
-    public OptimizingRouteFactory(GeoApiContext context) {
-        this(new RoutePlanner(context));
+    public OptimizingRouteFactory(GeoApiContext context, List<DirectionsApi.RouteRestriction> restrictions) {
+        this(new RoutePlanner(context, restrictions));
     }
 
     public OptimizingRouteFactory(RoutePlanner routePlanner) {
