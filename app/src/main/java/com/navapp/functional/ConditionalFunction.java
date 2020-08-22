@@ -1,6 +1,6 @@
 package com.navapp.functional;
 
-public interface DependentFunction {
+public interface ConditionalFunction {
     default void check() {
         if(condition())
             function();
