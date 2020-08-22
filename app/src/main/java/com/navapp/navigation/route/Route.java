@@ -5,6 +5,7 @@ import com.navapp.navigation.destination.Destination;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Route {
     private final List<Destination> destinations;
@@ -28,5 +29,14 @@ public class Route {
             sum += destinatoin.getRate().getValue();
 
         return sum;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Route route = (Route) o;
+        return destinations.equals(route.destinations);
     }
 }
