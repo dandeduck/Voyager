@@ -13,6 +13,10 @@ public class RoutePlanner {
     private final GeoApiContext context;
     private final DirectionsApi.RouteRestriction[] restrictions;
 
+    public RoutePlanner(GeoApiContext context) {
+        this(context, new ArrayList<>());
+    }
+
     public RoutePlanner(GeoApiContext context, List<DirectionsApi.RouteRestriction> restrictions) {
         this.context = context;
         DirectionsApi.RouteRestriction[] tmp = new DirectionsApi.RouteRestriction[restrictions.size()];

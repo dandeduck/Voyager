@@ -4,6 +4,8 @@ import com.navapp.navigation.destination.data.Location;
 import com.navapp.navigation.destination.data.PhoneNumber;
 import com.navapp.navigation.destination.data.Rate;
 
+import java.util.Objects;
+
 public class Destination {
     private final Location location;
     private final Rate rate;
@@ -41,6 +43,19 @@ public class Destination {
 
     public Destination changeRate(Rate newRate) {
         return new Destination(location, newRate, phoneNumber, comment);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Destination)) return false;
+
+        Destination that = (Destination) o;
+        return isDelivered == that.isDelivered &&
+                location.equals(that.location) &&
+                rate.equals(that.rate) &&
+                phoneNumber.equals(that.phoneNumber) &&
+                comment.equals(that.comment);
     }
 
     public String getLocationId() {

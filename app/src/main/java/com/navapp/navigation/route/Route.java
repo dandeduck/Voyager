@@ -5,7 +5,6 @@ import com.navapp.navigation.destination.Destination;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class Route {
     private final List<Destination> destinations;
@@ -38,5 +37,10 @@ public class Route {
 
         Route route = (Route) o;
         return destinations.equals(route.destinations);
+    }
+
+    @Override
+    public String toString() {
+        return destinations.toString();
     }
 }

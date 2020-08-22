@@ -16,4 +16,12 @@ public class Location {
     public String getId() {
         return id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Location)) return false;
+        Location location = (Location) o;
+        return id.equals(location.id);
+    }
 }

@@ -18,7 +18,7 @@ public class OptimizingRouteFactoryTest {
 
     @Before
     public void initializePlanner() {
-        routePlanner = new RoutePlanner(null, null) {
+        routePlanner = new RoutePlanner(null) {
             @Override
             public List<String> orderedRouteIds(String originId, List<String> waypointIds, String destinationId) {
                 List<String> ordered = new ArrayList<>(waypointIds);
