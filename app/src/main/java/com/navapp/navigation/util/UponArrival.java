@@ -22,7 +22,7 @@ public abstract class UponArrival implements ConditionalFunction {
         return DistanceMatrixApi.newRequest(context)
                 .origins(currentLocation())
                 .destinations(nextLocation())
-                .await()
+                .await() //here there is the same problem, but it might somewhat fine! because it should be called in the overlay mode
                 .rows[0].elements[0]
                 .durationInTraffic.inSeconds <= minDurationInSeconds;
     }
