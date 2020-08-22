@@ -11,8 +11,12 @@ public class Destination {
     private final String comment;
     private boolean isDelivered;
 
+    public Destination(Location location) {
+        this(location, Rate.empty());
+    }
+
     public Destination(Location location, Rate rate) {
-        this(location, rate, PhoneNumber.empty(), "");
+        this(location, rate, PhoneNumber.empty());
     }
 
     public Destination(Location location, Rate rate, PhoneNumber phoneNumber) {
@@ -26,8 +30,21 @@ public class Destination {
         this.comment = comment;
         isDelivered = false;
     }
-    public Location getLocation() {
-        return location;
+
+    public Destination changeLocation(String newLocationId) {
+        return changeLocation(new Location(newLocationId));
+    }
+
+    public Destination changeLocation(Location newLocation) {
+        return new Destination(newLocation, rate, phoneNumber, comment);
+    }
+
+    public Destination changeRate(Rate newRate) {
+        return new Destination(location, newRate, phoneNumber, comment);
+    }
+
+    public String getLocationId() {
+        return location.getId();
     }
 
     public Rate getRate() {
