@@ -39,6 +39,10 @@ public class Destination {
         return new Destination(newLocation, rate, phoneNumber, comment);
     }
 
+    public Destination changeRate(Rate newRate) {
+        return new Destination(location, newRate, phoneNumber, comment);
+    }
+
     public String getLocationId() {
         return location.getId();
     }
