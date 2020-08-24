@@ -2,6 +2,7 @@ package com.navapp.navigation.route;
 
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
+import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
 import com.navapp.navigation.destination.Destination;
 import com.navapp.navigation.destination.data.Location;
@@ -22,12 +23,18 @@ public class OptimizingRouteFactory implements RouteFactory{
     }
 
     @Override
-    public Route create(Location start, List<Destination> destinations, Location end) throws InterruptedException, ApiException, IOException {
-        List<String> destinationIds = extractIds(destinations);
-        List<String> orderedDestinationIds = routePlanner.orderedRouteIds(start.getId(), destinationIds, end.getId());
-        List<Destination> orderedDestinations = orderDestinationsByIds(destinations, orderedDestinationIds, end);
+    public void callbackCreate(Location start, List<Destination> destinations, Location end, PendingResult.Callback<Route> callback){
+        routePlanner.callbackOrderedRouteIds(start.getId(), extractIds(destinations), end.getId(), new PendingResult.Callback<List<String>>() {
+            @Override
+            public void onResult(List<String> result) {
+                callback.onResult(new Route(orderDestinationsByIds(destinations, result, end)));
+            }
 
-        return new Route(orderedDestinations);
+            @Override
+            public void onFailure(Throwable e) {
+                callback.onFailure(e);
+            }
+        });
     }
 
     private List<String> extractIds(List<Destination> destinations) {

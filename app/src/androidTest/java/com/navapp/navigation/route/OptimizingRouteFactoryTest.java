@@ -20,7 +20,7 @@ public class OptimizingRouteFactoryTest {
     public void initializePlanner() {
         routePlanner = new RoutePlanner(null) {
             @Override
-            public List<String> orderedRouteIds(String originId, List<String> waypointIds, String destinationId) {
+            public List<String> callbackOrderedRouteIds(String originId, List<String> waypointIds, String destinationId) {
                 List<String> ordered = new ArrayList<>(waypointIds);
                 Collections.sort(ordered);
                 ordered.add(destinationId);
