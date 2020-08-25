@@ -36,9 +36,9 @@ public class PhoneNumberTest {
 
     @Test
     public void create_normalWithLetters_returnsNormalizedNumberWithTel() {
-        final String NUMBER = "123456GAY";
+        final String NUMBER = "123456TEST";
         PhoneNumber phoneNumber = new PhoneNumber(NUMBER);
 
-        assertEquals(Uri.parse("tel:"+PhoneNumberUtils.normalizeNumber(NUMBER)), phoneNumber.getCallUri());
+        assertEquals(Uri.parse(String.format("tel:%s%s", NUMBER.substring(0,6), "8378")), phoneNumber.getCallUri());
     }
 }

@@ -3,11 +3,9 @@ package com.navapp.navigation.route;
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.PendingResult;
-import com.google.maps.errors.ApiException;
 import com.navapp.navigation.destination.Destination;
 import com.navapp.navigation.destination.data.Location;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +21,8 @@ public class OptimizingRouteFactory implements RouteFactory{
     }
 
     @Override
-    public void callbackCreate(Location start, List<Destination> destinations, Location end, PendingResult.Callback<Route> callback){
-        routePlanner.callbackOrderedRouteIds(start.getId(), extractIds(destinations), end.getId(), new PendingResult.Callback<List<String>>() {
+    public void requestCreation(Location start, List<Destination> destinations, Location end, PendingResult.Callback<Route> callback){
+        routePlanner.requestOrderedRouteIds(start.getId(), extractIds(destinations), end.getId(), new PendingResult.Callback<List<String>>() {
             @Override
             public void onResult(List<String> result) {
                 callback.onResult(new Route(orderDestinationsByIds(destinations, result, end)));

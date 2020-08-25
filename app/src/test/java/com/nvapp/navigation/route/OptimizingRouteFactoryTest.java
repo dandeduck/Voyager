@@ -15,9 +15,7 @@ import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -36,7 +34,7 @@ public class OptimizingRouteFactoryTest {
     }
 
     @Test
-    public void create_normal_returnsOrderedDestinations() {
+    public void creation_normal_returnsOrderedDestinations() {
         final Location START = new Location("0");
         final Location END = new Location("6");
         final List<Destination> UNORDERED_DESTINATIONS = new ArrayList<>(Arrays.asList(
@@ -53,7 +51,7 @@ public class OptimizingRouteFactoryTest {
                 new Destination(new Location("5")),
                 new Destination(END)));
 
-        mock_callBackOrderedRouteIds(Arrays.asList("1", "2", "3", "4", "5", "6"), "0", Arrays.asList("2", "1", "5", "4", "3"), "6");
+        mockRequestOrderedRouteIds(Arrays.asList("1", "2", "3", "4", "5", "6"), "0", Arrays.asList("2", "1", "5", "4", "3"), "6");
 
         OptimizingRouteFactory optimizingRouteFactory = new OptimizingRouteFactory(routePlanner);
         final Route EXPECTED_ROUTE = new Route(ORDERED_DESTINATIONS_WITH_END);
@@ -69,14 +67,14 @@ public class OptimizingRouteFactoryTest {
             }
         };
 
-        optimizingRouteFactory.callbackCreate(START, UNORDERED_DESTINATIONS, END, callback);
+        optimizingRouteFactory.requestCreation(START, UNORDERED_DESTINATIONS, END, callback);
     }
 
-    private void mock_callBackOrderedRouteIds(List<String> callbackValue, String originId, List<String> waypointIds, String destinationId) {
+    private void mockRequestOrderedRouteIds(List<String> callbackValue, String originId, List<String> waypointIds, String destinationId) {
         doAnswer(invocation -> {
             PendingResult.Callback<List<String>> callback = invocation.getArgument(3);
             callback.onResult(callbackValue);
             return null;
-        }).when(routePlanner).callbackOrderedRouteIds(eq(originId), eq(waypointIds), eq(destinationId), any());
+        }).when(routePlanner).requestOrderedRouteIds(eq(originId), eq(waypointIds), eq(destinationId), any());
     }
 }

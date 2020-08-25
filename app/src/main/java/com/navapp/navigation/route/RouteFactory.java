@@ -7,5 +7,5 @@ import com.navapp.navigation.destination.data.Location;
 import java.util.List;
 
 public interface RouteFactory {
-    void callbackCreate(Location start, List<Destination> destinations, Location end, PendingResult.Callback<Route> callback);
+    void requestCreation(Location start, List<Destination> destinations, Location end, PendingResult.Callback<Route> callback);
 }

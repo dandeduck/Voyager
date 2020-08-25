@@ -25,7 +25,7 @@ public class RoutePlanner {
         this.restrictions = restrictions.toArray(tmp);
     }
 
-    public void callbackOrderedRouteIds(String originId, List<String> waypointIds, String destinationId, PendingResult.Callback<List<String>> callback) {
+    public void requestOrderedRouteIds(String originId, List<String> waypointIds, String destinationId, PendingResult.Callback<List<String>> callback) {
         DirectionsApi.newRequest(context)
                 .departureTimeNow()
                 .originPlaceId(originId)

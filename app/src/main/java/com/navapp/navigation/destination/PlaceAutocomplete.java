@@ -20,7 +20,7 @@ public class PlaceAutocomplete {
         this.sessionToken = sessionToken;
     }
 
-    public void callbackPredictions(String address, PendingResult.Callback<List<AutocompletePrediction>> callback) {
+    public void requestPredictions(String address, PendingResult.Callback<List<AutocompletePrediction>> callback) {
         PlacesApi.placeAutocomplete(context, address, sessionToken).setCallback(new PendingResult.Callback<AutocompletePrediction[]>() {
             @Override
             public void onResult(AutocompletePrediction[] result) {
