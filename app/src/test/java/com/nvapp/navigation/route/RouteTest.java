@@ -20,12 +20,12 @@ public class RouteTest {
     private final static Destination BASE_DESTINATION = new Destination(new Location(""));
 
     @Test
-    public void calcRateSum_returnsRateSum() {
+    public void calcRateSum_normal_returnsRateSum() {
         final Rate FIRST_RATE = new Rate("first", 10);
         final Rate SECOND_RATE = new Rate("second", 20);
         final Rate THIRD_RATE = new Rate("third", 30);
         Route route = new Route(BASE_DESTINATION.changeRate(FIRST_RATE), BASE_DESTINATION.changeRate(SECOND_RATE), BASE_DESTINATION.changeRate(THIRD_RATE), BASE_DESTINATION);
-        
+
         assertEquals(FIRST_RATE.getValue() + SECOND_RATE.getValue() + THIRD_RATE.getValue(), route.calcRateSum(), DEFAULT_DELTA);
     }
 }
