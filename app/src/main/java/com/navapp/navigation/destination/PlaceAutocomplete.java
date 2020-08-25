@@ -1,6 +1,7 @@
 package com.navapp.navigation.destination;
 
 import com.google.maps.GeoApiContext;
+import com.google.maps.PendingResult;
 import com.google.maps.PlaceAutocompleteRequest;
 import com.google.maps.PlacesApi;
 import com.google.maps.errors.ApiException;
@@ -19,7 +20,17 @@ public class PlaceAutocomplete {
         this.sessionToken = sessionToken;
     }
 
-    public List<AutocompletePrediction> getPredictions(String address) throws InterruptedException, ApiException, IOException {
-        return Arrays.asList(PlacesApi.placeAutocomplete(context, address, sessionToken).await());
+    public void callbackPredictions(String address, PendingResult.Callback<List<AutocompletePrediction>> callback) {
+        PlacesApi.placeAutocomplete(context, address, sessionToken).setCallback(new PendingResult.Callback<AutocompletePrediction[]>() {
+            @Override
+            public void onResult(AutocompletePrediction[] result) {
+                callback.onResult(Arrays.asList(result));
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+                callback.onFailure(e);
+            }
+        });
     }
 }

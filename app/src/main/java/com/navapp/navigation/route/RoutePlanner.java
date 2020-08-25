@@ -2,7 +2,9 @@ package com.navapp.navigation.route;
 
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
+import com.google.maps.PendingResult;
 import com.google.maps.errors.ApiException;
+import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.GeocodedWaypoint;
 
 import java.io.IOException;
@@ -23,16 +25,25 @@ public class RoutePlanner {
         this.restrictions = restrictions.toArray(tmp);
     }
 
-    public List<String> orderedRouteIds(String originId, List<String> waypointIds, String destinationId) throws InterruptedException, ApiException, IOException {
-        GeocodedWaypoint[] orderedWaypoints = DirectionsApi.newRequest(context)
+    public void callbackOrderedRouteIds(String originId, List<String> waypointIds, String destinationId, PendingResult.Callback<List<String>> callback) {
+        DirectionsApi.newRequest(context)
+                .departureTimeNow()
                 .originPlaceId(originId)
                 .waypointsFromPlaceIds(toArray(waypointIds))
                 .destinationPlaceId(destinationId)
                 .avoid(restrictions)
                 .optimizeWaypoints(true)
-                .await().geocodedWaypoints;
+                .setCallback(new PendingResult.Callback<DirectionsResult>() {
+                    @Override
+                    public void onResult(DirectionsResult result) {
+                        callback.onResult(extractWaypointIds(result.geocodedWaypoints));
+                    }
 
-        return extractWaypointIds(orderedWaypoints);
+                    @Override
+                    public void onFailure(Throwable e) {
+                        callback.onFailure(e);
+                    }
+                });
     }
 
     private String[] toArray(List<String> list) {
