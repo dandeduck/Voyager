@@ -17,8 +17,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 
@@ -36,25 +39,26 @@ public class OptimizingRouteFactoryTest {
     public void create_normal_returnsOrderedDestinations() {
         final Location START = new Location("0");
         final Location END = new Location("6");
-        final List<Destination> UNORDERED_DESTINATIONS = Arrays.asList(
+        final List<Destination> UNORDERED_DESTINATIONS = new ArrayList<>(Arrays.asList(
                 new Destination(new Location("2")),
                 new Destination(new Location("1")),
                 new Destination(new Location("5")),
                 new Destination(new Location("4")),
-                new Destination(new Location("3")));
-        final List<Destination> ORDERED_DESTINATIONS_WITH_END = Arrays.asList(
+                new Destination(new Location("3"))));
+        final List<Destination> ORDERED_DESTINATIONS_WITH_END = new ArrayList<>(Arrays.asList(
                 new Destination(new Location("1")),
                 new Destination(new Location("2")),
                 new Destination(new Location("3")),
                 new Destination(new Location("4")),
                 new Destination(new Location("5")),
-                new Destination(END));
+                new Destination(END)));
 
-        addCreate_normal_returnsOrderedDestinationsAnswer();
+        mock_callBackOrderedRouteIds(Arrays.asList("1", "2", "3", "4", "5", "6"), "0", Arrays.asList("2", "1", "5", "4", "3"), "6");
+
         OptimizingRouteFactory optimizingRouteFactory = new OptimizingRouteFactory(routePlanner);
-
         final Route EXPECTED_ROUTE = new Route(ORDERED_DESTINATIONS_WITH_END);
-        optimizingRouteFactory.callbackCreate(START, UNORDERED_DESTINATIONS, END, new PendingResult.Callback<Route>() {
+
+        PendingResult.Callback<Route> callback = new PendingResult.Callback<Route>() {
             @Override
             public void onResult(Route result) {
                 assertEquals(EXPECTED_ROUTE, result);
@@ -63,30 +67,16 @@ public class OptimizingRouteFactoryTest {
             @Override
             public void onFailure(Throwable e) {
             }
-        });
+        };
+
+        optimizingRouteFactory.callbackCreate(START, UNORDERED_DESTINATIONS, END, callback);
     }
 
-    private void addCreate_normal_returnsOrderedDestinationsAnswer() {
+    private void mock_callBackOrderedRouteIds(List<String> callbackValue, String originId, List<String> waypointIds, String destinationId) {
         doAnswer(invocation -> {
-            List<String> waypointIds = invocation.getArgument(1);
-            String endId = invocation.getArgument(2);
             PendingResult.Callback<List<String>> callback = invocation.getArgument(3);
-
-            List<String> ordered = new ArrayList<>(waypointIds);
-            Collections.sort(ordered);
-            ordered.add(endId);
-            callback.onResult(ordered);
-
+            callback.onResult(callbackValue);
             return null;
-        }).when(routePlanner).callbackOrderedRouteIds("0", Arrays.asList("2", "1", "5", "4", "3"), "6", new PendingResult.Callback<List<String>>() { //I realize that this
-            @Override
-            public void onResult(List<String> result) {
-                assertEquals(result, Arrays.asList("1", "2", "3", "4", "5")); //and this, is bad design, but uhhh
-            }
-
-            @Override
-            public void onFailure(Throwable e) {
-            }
-        });
+        }).when(routePlanner).callbackOrderedRouteIds(eq(originId), eq(waypointIds), eq(destinationId), any());
     }
 }
