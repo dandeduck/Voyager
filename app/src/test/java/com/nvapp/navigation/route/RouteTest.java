@@ -7,9 +7,14 @@ import com.navapp.navigation.route.Route;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(RobolectricTestRunner.class)
+@Config(manifest = Config.NONE)
 public class RouteTest {
     private final static double DEFAULT_DELTA = 0.001;
     private final static Destination BASE_DESTINATION = new Destination(new Location(""));
