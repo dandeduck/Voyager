@@ -3,8 +3,6 @@ package com.navapp.navigation.destination.data;
 import android.net.Uri;
 import android.telephony.PhoneNumberUtils;
 
-import java.util.Objects;
-
 public class PhoneNumber {
     private static final int MIN_PHONE_NUMBER_LENGTH = 6;
     private static final int MAX_PHONE_NUMBER_LENGTH = 15;

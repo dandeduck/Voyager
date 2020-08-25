@@ -1,8 +1,10 @@
-package com.navapp.navigation.route;
+package com.nvapp.navigation.route;
 
 import com.navapp.navigation.destination.Destination;
 import com.navapp.navigation.destination.data.Location;
 import com.navapp.navigation.destination.data.Rate;
+import com.navapp.navigation.route.Route;
+
 import org.junit.Before;
 import org.junit.Test;
 
