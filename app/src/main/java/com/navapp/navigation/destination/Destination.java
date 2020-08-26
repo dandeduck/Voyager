@@ -26,11 +26,15 @@ public class Destination {
     }
 
     public Destination(Location location, Rate rate, PhoneNumber phoneNumber, String comment) {
+        this(location, rate, phoneNumber, comment, false);
+    }
+
+    private Destination(Location location, Rate rate, PhoneNumber phoneNumber, String comment, boolean isDelivered) {
         this.location = location;
         this.rate = rate;
         this.phoneNumber = phoneNumber;
         this.comment = comment;
-        isDelivered = false;
+        this.isDelivered = isDelivered;
     }
 
     public Destination changeLocation(String newLocationId) {
@@ -38,11 +42,11 @@ public class Destination {
     }
 
     public Destination changeLocation(Location newLocation) {
-        return new Destination(newLocation, rate, phoneNumber, comment);
+        return new Destination(newLocation, rate, phoneNumber, comment, isDelivered);
     }
 
     public Destination changeRate(Rate newRate) {
-        return new Destination(location, newRate, phoneNumber, comment);
+        return new Destination(location, newRate, phoneNumber, comment, isDelivered);
     }
 
     @Override
