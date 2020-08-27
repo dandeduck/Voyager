@@ -14,6 +14,7 @@ import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.maps.model.LatLng;
+import com.navapp.navigation.util.exceptions.LackingPermissionException;
 
 import java.io.Closeable;
 import java.util.Collections;
