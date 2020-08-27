@@ -1,5 +1,7 @@
 language: android
 dist: trusty
+before_install:
+  - yes | sudo sdkmanager --licenses
 android:
   components:
     - build-tools-30.0.1
@@ -12,4 +14,3 @@ android:
     - 'android-sdk-preview-license-52d11cd2'
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
-    - yes | sudo sdkmanager --licenses
