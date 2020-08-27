@@ -12,10 +12,12 @@ public class HasArrived extends Observable {
     private HasArrived() {
     }
 
-    public void updateValue(boolean data) {
+    public void update(boolean hasArrived) {
         synchronized (this) {
-            setChanged();
-            notifyObservers(data);
+            if(hasArrived) {
+                setChanged();
+                notifyObservers(hasArrived);
+            }
         }
     }
 }
