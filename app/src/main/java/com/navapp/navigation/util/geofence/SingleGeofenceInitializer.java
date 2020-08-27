@@ -23,13 +23,13 @@ public class SingleGeofenceInitializer implements Closeable {
     private final GeofencingClient client;
     private final LatLng destination;
     private final float detectionRadius;
-    private final OnFailureListener onFailureListener;
 
-    public SingleGeofenceInitializer(Context context, LatLng destination, float detectionRadius, OnFailureListener onFailureListener) {
+    public SingleGeofenceInitializer(Context context, LatLng destination, float detectionRadius, OnFailureListener onFailureListener) throws LackingPermissionException {
         client = LocationServices.getGeofencingClient(context);
         this.destination = destination;
         this.detectionRadius = detectionRadius;
-        this.onFailureListener = onFailureListener;
+
+        addFence(context, onFailureListener);
     }
 
     @Override
