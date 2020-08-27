@@ -20,6 +20,7 @@ import java.io.Closeable;
 import java.util.Collections;
 
 public class SingleGeofenceInitializer implements Closeable {
+    private static final String FENCE_NAME = "destination";
     private final GeofencingClient client;
     private final LatLng destination;
     private final float detectionRadius;
@@ -49,7 +50,7 @@ public class SingleGeofenceInitializer implements Closeable {
 
     private Geofence getGeofence() {
         return new Geofence.Builder()
-                .setRequestId("destination")
+                .setRequestId(FENCE_NAME)
                 .setCircularRegion(destination.lat, destination.lng, detectionRadius)
                 .setExpirationDuration(Geofence.NEVER_EXPIRE)
                 .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER)
