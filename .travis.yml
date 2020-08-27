@@ -1,5 +1,6 @@
-sudo: false
 language: android
+jdk: oraclejdk8
+sudo: false
 dist: trusty
 before_install:
   - yes | sdkmanager "platforms;android-30"
@@ -12,13 +13,24 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
 
-    - sys-img-x86-android-30
+    #- sys-img-x86-android-30
+    - sys-img-armeabi-v7a-android-30
   licenses:
     - 'android-sdk-preview-license-52d11cd2'
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
+env:
+  global:
+    # install timeout in minutes (2 minutes by default)
+    - ADB_INSTALL_TIMEOUT=8
+
+# Emulator Management: Create, Start and Wait
 before_script:
-  - ../linux-sdk-tools/tools/bin/sdkmanager "system-images;android-${ANDROID_COMPILE_SDK};google_apis;x86"
-  - echo no | ../linux-sdk-tools/tools/bin/avdmanager create avd -n testAVD -k "system-images;android-${ANDROID_COMPILE_SDK};google_apis;x86"
-  - ../linux-sdk-tools/tools/emulator -avd testAVD -no-audio -no-window &
-  - ./android-wait-for-emulator
+  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+
+script:
+  - android list target
+  - ./gradlew connectedAndroidTest
