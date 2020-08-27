@@ -1,4 +1,4 @@
-package com.navapp.navigation.util.geofence;
+package com.navapp.navigation.util.geofencing;
 
 import java.util.Observable;
 

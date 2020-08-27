@@ -1,4 +1,4 @@
-package com.navapp.navigation.util.geofence;
+package com.navapp.navigation.util.geofencing;
 
 import android.Manifest;
 import android.app.PendingIntent;
