@@ -7,6 +7,6 @@ import android.content.Intent;
 public class UponArrival extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        //figure out what to do here
+        HasArrived.getInstance().updateValue(true);
     }
 }
