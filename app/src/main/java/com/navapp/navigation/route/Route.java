@@ -1,39 +1,46 @@
 package com.navapp.navigation.route;
 
 import com.navapp.navigation.destination.Destination;
-import com.navapp.navigation.destination.data.Address;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.Deque;
 import java.util.List;
 
 public class Route {
     private final List<Destination> destinations;
-    private final Address end;
 
-    public Route(Collection<Destination> destinations, Address end) {
-        this.destinations = new ArrayList<>(destinations);
-        this.end = end;
+    public Route(Destination... destinations) {
+        this(Arrays.asList(destinations));
     }
 
-    public Route changeEnd(Address newEnd) {
-        return new Route(destinations, newEnd);
-    }
-
-    public Route addDestination(Destination destination) {
-        List<Destination> newList = new ArrayList<>(destinations);
-        newList.add(destination);
-        return new Route(newList, end);
+    public Route(List<Destination> destinations) {
+        this.destinations = destinations;
     }
 
     public List<Destination> getDestinations() {
         return Collections.unmodifiableList(destinations);
     }
 
-    public Address getEnd() {
-        return end;
+    public double calcRateSum() {
+        double sum = 0;
+
+        for (Destination destinatoin : destinations)
+            sum += destinatoin.getRate().getValue();
+
+        return sum;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Route route = (Route) o;
+        return destinations.equals(route.destinations);
+    }
+
+    @Override
+    public String toString() {
+        return destinations.toString();
     }
 }

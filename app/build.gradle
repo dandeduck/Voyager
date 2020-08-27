@@ -37,6 +37,9 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.maps:google-maps-services:0.15.0'
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.25' //In google maps services Github they say to add this dependency to prevent some error or something
+
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
@@ -46,6 +49,8 @@ dependencies {
 
     testImplementation group: 'junit', name: 'junit', version: '4.13'
     testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.1'
+    testImplementation 'org.mockito:mockito-core:2.7.22'
+    testImplementation 'org.robolectric:robolectric:4.4'
 
     androidTestImplementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
     androidTestImplementation "org.hamcrest:hamcrest:2.1"

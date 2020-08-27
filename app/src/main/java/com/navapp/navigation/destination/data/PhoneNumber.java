@@ -30,4 +30,12 @@ public class PhoneNumber {
     public boolean isEmpty() {
         return number.equals(EMPTY_PHONE_NUMBER);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PhoneNumber)) return false;
+        PhoneNumber that = (PhoneNumber) o;
+        return number.equals(that.number);
+    }
 }
