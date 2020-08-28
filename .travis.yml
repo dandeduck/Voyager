@@ -30,7 +30,7 @@ env:
     - DIR=. # Project directory
     - API=30 # Android API level 30 by default
     - TAG=google_apis # Google APIs by default, alternatively use default
-    - ABI=arm64-v8a # ARM ABI v7a by default
+    - ABI=armeabi-v7a # ARM ABI v7a by default
     - QEMU_AUDIO_DRV=none # Disable emulator audio to avoid warning
     - GRADLE_USER_HOME="${DIR}/.gradle" # Change location for Gradle Wrapper and cache
     - ANDROID_HOME=/usr/local/android-sdk-24.0.2 # Depends on the cookbooks version used in the VM
@@ -42,7 +42,7 @@ matrix:
   include: # More Emulator API levels to build in parallel
     - env:
         - API=29
-        - ABI=arm64-v8a
+        - ABI=x86
     - env:
         - API=21
         - ABI=armeabi-v7a
@@ -82,7 +82,7 @@ install:
   - echo yes | sdkmanager "$EMULATOR" # Install emulator system image
   # Create and start emulator
   - echo no | avdmanager create avd -n acib -k "$EMULATOR" -f --abi "$ABI" --tag "$TAG"
-  - emulator -avd acib -engine classic -no-window -camera-back none -camera-front none -verbose -qemu -m 512 &
+  - ${ANDROID_HOME}/emulator/emulator -avd acib -engine classic -no-window -camera-back none -camera-front none -verbose -qemu -m 512 &
   # Start adbd, wait for device connected and show android serial
   - adb wait-for-device get-serialno
   # Show version and download Gradle Wrapper if it's not already cached
