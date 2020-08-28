@@ -82,6 +82,7 @@ install:
   # Start adbd, wait for device connected and show android serial
   #- adb wait-for-device get-serialno
   - export ANDROID_SDK_ROOT=${ANDROID_HOME}
+  - echo $ANDROID_SDK_ROOT
   # Show version and download Gradle Wrapper if it's not already cached
   - cd ${TRAVIS_BUILD_DIR}/${DIR} && ./gradlew --version
   # Clean project and download missing dependencies and components
