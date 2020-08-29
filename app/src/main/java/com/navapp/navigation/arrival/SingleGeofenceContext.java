@@ -24,7 +24,7 @@ public class SingleGeofenceContext implements Closeable {
     private final LatLng destination;
     private final float detectionRadius;
 
-    public SingleGeofenceContext(Context context, LatLng destination, float detectionRadius, OnFailureListener onFailureListener) throws LackingPermissionException {
+    public SingleGeofenceContext(Context context, LatLng destination, float detectionRadius, OnFailureListener onFailureListener) throws PermissionMissingException {
         client = LocationServices.getGeofencingClient(context);
         this.destination = destination;
         this.detectionRadius = detectionRadius;
@@ -37,9 +37,9 @@ public class SingleGeofenceContext implements Closeable {
         client.removeGeofences(Collections.singletonList("destination"));
     }
 
-    private void addFence(Context context, OnFailureListener onFailureListener) throws LackingPermissionException {
+    private void addFence(Context context, OnFailureListener onFailureListener) throws PermissionMissingException {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-            throw new LackingPermissionException(Manifest.permission.ACCESS_FINE_LOCATION);
+            throw new PermissionMissingException(Manifest.permission.ACCESS_FINE_LOCATION);
 
         GeofencingRequest geofencingRequest = getGeofencingRequest(getGeofence());
         PendingIntent geofencePendingIntent = getGeofencePendingIntent(context);
