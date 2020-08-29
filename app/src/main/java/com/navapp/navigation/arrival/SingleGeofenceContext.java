@@ -18,13 +18,13 @@ import com.google.maps.model.LatLng;
 import java.io.Closeable;
 import java.util.Collections;
 
-public class SingleGeofenceInitializer implements Closeable {
+public class SingleGeofenceContext implements Closeable {
     private static final String FENCE_NAME = "destination";
     private final GeofencingClient client;
     private final LatLng destination;
     private final float detectionRadius;
 
-    public SingleGeofenceInitializer(Context context, LatLng destination, float detectionRadius, OnFailureListener onFailureListener) throws LackingPermissionException {
+    public SingleGeofenceContext(Context context, LatLng destination, float detectionRadius, OnFailureListener onFailureListener) throws LackingPermissionException {
         client = LocationServices.getGeofencingClient(context);
         this.destination = destination;
         this.detectionRadius = detectionRadius;

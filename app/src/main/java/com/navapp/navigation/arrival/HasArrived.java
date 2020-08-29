@@ -3,7 +3,7 @@ package com.navapp.navigation.arrival;
 import java.util.Observable;
 
 public class HasArrived extends Observable {
-    private final static HasArrived instance = new HasArrived();
+    private static final HasArrived instance = new HasArrived();
 
     public static HasArrived getInstance() {
         return instance;
@@ -12,12 +12,10 @@ public class HasArrived extends Observable {
     private HasArrived() {
     }
 
-    public void update(boolean hasArrived) {
+    public void update() {
         synchronized (this) {
-            if(hasArrived) {
-                setChanged();
-                notifyObservers(hasArrived);
-            }
+            setChanged();
+            notifyObservers(null);
         }
     }
 }
