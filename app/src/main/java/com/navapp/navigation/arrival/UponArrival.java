@@ -1,4 +1,4 @@
-package com.navapp.navigation.util.geofencing;
+package com.navapp.navigation.arrival;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

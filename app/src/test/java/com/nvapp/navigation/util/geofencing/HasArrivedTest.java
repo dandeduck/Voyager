@@ -1,6 +1,6 @@
 package com.nvapp.navigation.util.geofencing;
 
-import com.navapp.navigation.util.geofencing.HasArrived;
+import com.navapp.navigation.arrival.HasArrived;
 
 import org.junit.Test;
 
