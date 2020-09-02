@@ -15,7 +15,7 @@ public class RouteLinkFactory {
     private static final char WAYPOINT_SEPARATOR = '|';
 
     private static final String DRIVING_TRAVEL_MODE = "&travelmode=driving";
-    private static final String SKIP_OVERVIEW = "dir_action=navigate";
+    private static final String SKIP_OVERVIEW = "&dir_action=navigate";
 
     public static Uri create(Route route, boolean chooseDriving, boolean shouldSkipOverview) {
         String unEncodedUri = new StringBuilder()
