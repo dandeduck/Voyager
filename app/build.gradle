@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.maps:google-maps-services:0.15.0'
     runtimeOnly 'org.slf4j:slf4j-simple:1.7.25' //In google maps services Github they say to add this dependency to prevent some error or something
 
