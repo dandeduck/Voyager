@@ -35,20 +35,20 @@ public class OptimizingRouteFactoryTest {
 
     @Test
     public void creation_normal_returnsOrderedDestinations() {
-        final Location START = new Location("0");
-        final Location END = new Location("6");
+        final Location START = new Location("0", "", null);
+        final Location END = new Location("6", "", null);
         final List<Destination> UNORDERED_DESTINATIONS = new ArrayList<>(Arrays.asList(
-                new Destination(new Location("2")),
-                new Destination(new Location("1")),
-                new Destination(new Location("5")),
-                new Destination(new Location("4")),
-                new Destination(new Location("3"))));
+                new Destination(new Location("2", "", null)),
+                new Destination(new Location("1", "", null)),
+                new Destination(new Location("5", "", null)),
+                new Destination(new Location("4", "", null)),
+                new Destination(new Location("3", "", null))));
         final List<Destination> ORDERED_DESTINATIONS_WITH_END = new ArrayList<>(Arrays.asList(
-                new Destination(new Location("1")),
-                new Destination(new Location("2")),
-                new Destination(new Location("3")),
-                new Destination(new Location("4")),
-                new Destination(new Location("5")),
+                new Destination(new Location("1", "", null)),
+                new Destination(new Location("2", "", null)),
+                new Destination(new Location("3", "", null)),
+                new Destination(new Location("4", "", null)),
+                new Destination(new Location("5", "", null)),
                 new Destination(END)));
 
         mockRequestOrderedRouteIds(Arrays.asList("1", "2", "3", "4", "5", "6"), "0", Arrays.asList("2", "1", "5", "4", "3"), "6");

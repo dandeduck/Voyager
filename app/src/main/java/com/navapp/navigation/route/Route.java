@@ -18,10 +18,6 @@ public class Route {
         this.destinations = destinations;
     }
 
-    public List<Destination> getDestinations() {
-        return Collections.unmodifiableList(destinations);
-    }
-
     public Destination getOrigin() {
         return destinations.get(0);
     }

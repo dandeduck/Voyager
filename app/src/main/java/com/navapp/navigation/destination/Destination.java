@@ -4,8 +4,6 @@ import com.navapp.navigation.destination.data.Location;
 import com.navapp.navigation.destination.data.PhoneNumber;
 import com.navapp.navigation.destination.data.Rate;
 
-import java.util.Objects;
-
 public class Destination {
     private final Location location;
     private final Rate rate;
@@ -37,14 +35,6 @@ public class Destination {
         this.isDelivered = isDelivered;
     }
 
-    public Destination changeLocation(String newLocationId) {
-        return changeLocation(new Location(newLocationId));
-    }
-
-    public Destination changeLocation(Location newLocation) {
-        return new Destination(newLocation, rate, phoneNumber, comment, isDelivered);
-    }
-
     public Destination changeRate(Rate newRate) {
         return new Destination(location, newRate, phoneNumber, comment, isDelivered);
     }
@@ -64,6 +54,10 @@ public class Destination {
 
     public String getLocationId() {
         return location.getId();
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     public Rate getRate() {

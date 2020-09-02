@@ -1,20 +1,34 @@
 package com.navapp.navigation.destination.data;
 
 import com.google.maps.model.AutocompletePrediction;
+import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.LatLng;
 
 public class Location {
     private final String id;
+    private final String address;
+    private final LatLng position;
 
-    public Location(AutocompletePrediction prediction) {
-        this(prediction.placeId);
+    public Location(AutocompletePrediction prediction, GeocodingResult result) {
+        this(prediction.placeId, result.formattedAddress, result.geometry.location);
     }
 
-    public Location(String id) {
+    public Location(String id, String address, LatLng position) {
         this.id = id;
+        this.address = address;
+        this.position = position;
     }
 
     public String getId() {
         return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public LatLng getPosition() {
+        return position;
     }
 
     @Override
