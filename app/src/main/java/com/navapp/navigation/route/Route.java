@@ -24,8 +24,8 @@ public class Route {
     public double calcRateSum() {
         double sum = 0;
 
-        for (Destination destinatoin : destinations)
-            sum += destinatoin.getRate().getValue();
+        for (Destination destination : destinations)
+            sum += destination.getRate().getValue();
 
         return sum;
     }
