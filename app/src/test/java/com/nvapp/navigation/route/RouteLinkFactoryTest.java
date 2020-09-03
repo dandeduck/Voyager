@@ -49,4 +49,14 @@ public class RouteLinkFactoryTest {
     public void create_falseFlags_returnCorrectUri() {
         assertEquals(Uri.parse(baseExpectedLinkText), RouteLinkFactory.create(route, false, false));
     }
+
+    @Test
+    public void create_trueChooseDriving_returnCorrectUri() {
+        assertEquals(Uri.parse(baseExpectedLinkText + DRIVING_TRAVEL_MODE), RouteLinkFactory.create(route, true, false));
+    }
+
+    @Test
+    public void create_trueSkipOverview_returnCorrectUri() {
+        assertEquals(Uri.parse(baseExpectedLinkText + SKIP_OVERVIEW), RouteLinkFactory.create(route, false, true));
+    }
 }
