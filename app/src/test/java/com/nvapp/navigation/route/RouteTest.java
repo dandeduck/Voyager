@@ -13,14 +13,16 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE)
 public class RouteTest {
-    private final static double DEFAULT_DELTA = 0.001;
-    private final static Destination BASE_DESTINATION = new Destination(new Location("", "", new LatLng(0, 0)));
+    private static final double DEFAULT_DELTA = 0.001;
+    private static final Destination BASE_DESTINATION = new Destination(new Location("", "", new LatLng(0, 0)));
     private static final Rate FIRST_RATE = new Rate("first", 10);
     private static final Rate SECOND_RATE = new Rate("second", 20);
     private static final Rate THIRD_RATE = new Rate("third", 30);
@@ -29,7 +31,7 @@ public class RouteTest {
 
     @Before
     public void createRoute() {
-        route = new Route(BASE_DESTINATION.changeRate(FIRST_RATE), BASE_DESTINATION.changeRate(SECOND_RATE), BASE_DESTINATION.changeRate(THIRD_RATE), BASE_DESTINATION);
+        route = new Route(BASE_DESTINATION.changeRate(FIRST_RATE), BASE_DESTINATION.changeRate(SECOND_RATE), BASE_DESTINATION.changeRate(THIRD_RATE));
     }
 
     @Test
@@ -49,9 +51,6 @@ public class RouteTest {
 
     @Test
     public void getWaypoints_normal_returnsDestinationsBetweenFirstAndLast() {
-        final ArrayList<Destination> EXPECTED = new ArrayList<>();
-        EXPECTED.add(BASE_DESTINATION.changeRate(SECOND_RATE));
-
-        assertEquals(EXPECTED, route.getWaypoints());
+        assertEquals(Collections.singletonList(BASE_DESTINATION.changeRate(SECOND_RATE)), route.getWaypoints());
     }
 }

@@ -38,4 +38,9 @@ public class PhoneNumber {
         PhoneNumber that = (PhoneNumber) o;
         return number.equals(that.number);
     }
+
+    @Override
+    public String toString() {
+        return number;
+    }
 }

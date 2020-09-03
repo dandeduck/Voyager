@@ -39,19 +39,6 @@ public class Destination {
         return new Destination(location, newRate, phoneNumber, comment, isDelivered);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Destination)) return false;
-
-        Destination that = (Destination) o;
-        return isDelivered == that.isDelivered &&
-                location.equals(that.location) &&
-                rate.equals(that.rate) &&
-                phoneNumber.equals(that.phoneNumber) &&
-                comment.equals(that.comment);
-    }
-
     public String getLocationId() {
         return location.getId();
     }
@@ -82,5 +69,23 @@ public class Destination {
 
     public void setUnDelivered() {
         isDelivered = false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Destination)) return false;
+
+        Destination that = (Destination) o;
+        return isDelivered == that.isDelivered &&
+                location.equals(that.location) &&
+                rate.equals(that.rate) &&
+                phoneNumber.equals(that.phoneNumber) &&
+                comment.equals(that.comment);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("location: %s \n rate: %s \n number: %s \n comment: %s \n delivered? %b", location, rate, phoneNumber, comment, isDelivered);
     }
 }

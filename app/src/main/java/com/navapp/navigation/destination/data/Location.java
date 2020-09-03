@@ -36,6 +36,13 @@ public class Location {
         if (this == o) return true;
         if (!(o instanceof Location)) return false;
         Location location = (Location) o;
-        return id.equals(location.id);
+        return id.equals(location.id) &&
+                address.equals(location.address) &&
+                position.equals(location.position);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("address: %s - position: %s - id: %s", address, position, id);
     }
 }
