@@ -21,6 +21,7 @@ public class RoutePlanner {
 
     public RoutePlanner(GeoApiContext context, List<DirectionsApi.RouteRestriction> restrictions) {
         this.context = context;
+
         DirectionsApi.RouteRestriction[] tmp = new DirectionsApi.RouteRestriction[restrictions.size()];
         this.restrictions = restrictions.toArray(tmp);
     }
