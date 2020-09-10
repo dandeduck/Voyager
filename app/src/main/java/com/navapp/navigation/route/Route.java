@@ -27,7 +27,7 @@ public class Route {
     }
 
     public List<Destination> getWaypoints() {
-        return new ArrayList<>(destinations.subList(1, destinations.size()-1));
+        return Collections.unmodifiableList(destinations.subList(1, destinations.size()-1));
     }
 
     public double calcRateSum() {
