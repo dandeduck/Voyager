@@ -18,38 +18,33 @@ public class RouteLinkFactory {
     private static final String SKIP_OVERVIEW = "&dir_action=navigate";
 
     public static Uri create(Route route, boolean chooseDriving, boolean shouldSkipOverview) {
-        String unEncodedUri = new StringBuilder()
-                .append(NAVIGATION_LINK)
-                .append(originSection(route))
-                .append(destinationSection(route))
-                .append(waypointsSection(route))
-                .append(chooseDriving ? DRIVING_TRAVEL_MODE : "")
-                .append(shouldSkipOverview ? SKIP_OVERVIEW : "")
-                .toString();
+        StringBuilder linkBuilder = new StringBuilder(NAVIGATION_LINK);
 
-        return Uri.parse(unEncodedUri);
+        originSection(linkBuilder, route);
+        destinationSection(linkBuilder, route);
+        waypointsSection(linkBuilder, route);
+
+        linkBuilder.append(chooseDriving ? DRIVING_TRAVEL_MODE : "")
+                .append(shouldSkipOverview ? SKIP_OVERVIEW : "");
+
+        return Uri.parse(linkBuilder.toString());
     }
 
-    private static String originSection(Route route) {
-        return new StringBuilder()
-                .append(ORIGIN)
+    private static void originSection(StringBuilder builder, Route route) {
+        builder.append(ORIGIN)
                 .append(route.getOrigin().getLocation().getAddress())
                 .append(ORIGIN_PLACE_ID)
-                .append(route.getOrigin().getLocationId())
-                .toString();
+                .append(route.getOrigin().getLocationId());
     }
 
-    private static String destinationSection(Route route) {
-        return new StringBuilder()
-                .append(DESTINATION)
+    private static void destinationSection(StringBuilder builder, Route route) {
+        builder.append(DESTINATION)
                 .append(route.getDestination().getLocation().getAddress())
                 .append(DESTINATION_PLACE_ID)
-                .append(route.getDestination().getLocationId())
-                .toString();
+                .append(route.getDestination().getLocationId());
     }
 
-    private static String waypointsSection(Route route) {
-        StringBuilder builder = new StringBuilder();
+    private static void waypointsSection(StringBuilder builder, Route route) {
         builder.append(WAYPOINTS);
 
         for (Destination destination : route.getWaypoints())
@@ -63,6 +58,6 @@ public class RouteLinkFactory {
             builder.append(destination.getLocationId())
                     .append(WAYPOINT_SEPARATOR);
 
-        return builder.substring(0, builder.length() - 1);
+        builder.delete(builder.length()-1, builder.length());
     }
 }
