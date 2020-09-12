@@ -14,7 +14,7 @@ public class PlaceDetailsFactory {
 
     public void requestBasicPlaceDetails(String placeId, PendingResult.Callback<PlaceDetails> callback) {
         PlacesApi.placeDetails(context, placeId, session)
-                .fields(PlaceDetailsRequest.FieldMask.ADDRESS_COMPONENT, PlaceDetailsRequest.FieldMask.GEOMETRY_LOCATION)
+                .fields(PlaceDetailsRequest.FieldMask.ADDRESS_COMPONENT, PlaceDetailsRequest.FieldMask.GEOMETRY_LOCATION_LAT, PlaceDetailsRequest.FieldMask.GEOMETRY_LOCATION_LNG)
                 .setCallback(callback);
     }
 }
