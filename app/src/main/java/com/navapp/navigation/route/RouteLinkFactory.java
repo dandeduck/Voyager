@@ -32,30 +32,30 @@ public class RouteLinkFactory {
 
     private static void originSection(StringBuilder builder, Route route) {
         builder.append(ORIGIN)
-                .append(route.getOrigin().getLocation().getAddress())
+                .append(route.getOrigin().getPlace().getAddress())
                 .append(ORIGIN_PLACE_ID)
-                .append(route.getOrigin().getLocationId());
+                .append(route.getOrigin().getPlaceId());
     }
 
     private static void destinationSection(StringBuilder builder, Route route) {
         builder.append(DESTINATION)
-                .append(route.getDestination().getLocation().getAddress())
+                .append(route.getDestination().getPlace().getAddress())
                 .append(DESTINATION_PLACE_ID)
-                .append(route.getDestination().getLocationId());
+                .append(route.getDestination().getPlaceId());
     }
 
     private static void waypointsSection(StringBuilder builder, Route route) {
         builder.append(WAYPOINTS);
 
         for (Destination destination : route.getWaypoints())
-            builder.append(destination.getLocation().getAddress())
+            builder.append(destination.getPlace().getAddress())
                     .append(WAYPOINT_SEPARATOR);
 
         builder.deleteCharAt(builder.length()-1);
         builder.append(WAYPOINT_PLACE_ID);
 
         for (Destination destination : route.getWaypoints())
-            builder.append(destination.getLocationId())
+            builder.append(destination.getPlaceId())
                     .append(WAYPOINT_SEPARATOR);
 
         builder.delete(builder.length()-1, builder.length());

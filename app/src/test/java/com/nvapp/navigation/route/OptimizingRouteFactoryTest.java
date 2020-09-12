@@ -3,7 +3,7 @@ package com.nvapp.navigation.route;
 import com.google.maps.PendingResult;
 import com.google.maps.model.LatLng;
 import com.navapp.navigation.destination.Destination;
-import com.navapp.navigation.destination.data.Location;
+import com.navapp.navigation.destination.data.Place;
 import com.navapp.navigation.route.OptimizingRouteFactory;
 import com.navapp.navigation.route.Route;
 import com.navapp.navigation.route.RoutePlanner;
@@ -36,20 +36,20 @@ public class OptimizingRouteFactoryTest {
 
     @Test
     public void creation_normal_returnsOrderedDestinations() {
-        final Location START = new Location("0", "", new LatLng(0, 0));
-        final Location END = new Location("6", "", new LatLng(0, 0));
+        final Place START = new Place("0", "", new LatLng(0, 0));
+        final Place END = new Place("6", "", new LatLng(0, 0));
         final List<Destination> UNORDERED_DESTINATIONS = new ArrayList<>(Arrays.asList(
-                new Destination(new Location("2", "", new LatLng(0, 0))),
-                new Destination(new Location("1", "", new LatLng(0, 0))),
-                new Destination(new Location("5", "", new LatLng(0, 0))),
-                new Destination(new Location("4", "", new LatLng(0, 0))),
-                new Destination(new Location("3", "", new LatLng(0, 0)))));
+                new Destination(new Place("2", "", new LatLng(0, 0))),
+                new Destination(new Place("1", "", new LatLng(0, 0))),
+                new Destination(new Place("5", "", new LatLng(0, 0))),
+                new Destination(new Place("4", "", new LatLng(0, 0))),
+                new Destination(new Place("3", "", new LatLng(0, 0)))));
         final List<Destination> ORDERED_DESTINATIONS_WITH_END = new ArrayList<>(Arrays.asList(
-                new Destination(new Location("1", "", new LatLng(0, 0))),
-                new Destination(new Location("2", "", new LatLng(0, 0))),
-                new Destination(new Location("3", "", new LatLng(0, 0))),
-                new Destination(new Location("4", "", new LatLng(0, 0))),
-                new Destination(new Location("5", "", new LatLng(0, 0))),
+                new Destination(new Place("1", "", new LatLng(0, 0))),
+                new Destination(new Place("2", "", new LatLng(0, 0))),
+                new Destination(new Place("3", "", new LatLng(0, 0))),
+                new Destination(new Place("4", "", new LatLng(0, 0))),
+                new Destination(new Place("5", "", new LatLng(0, 0))),
                 new Destination(END)));
 
         mockRequestOrderedRouteIds(Arrays.asList("1", "2", "3", "4", "5", "6"), "0", Arrays.asList("2", "1", "5", "4", "3"), "6");

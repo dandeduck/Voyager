@@ -1,34 +1,34 @@
 package com.navapp.navigation.destination;
 
-import com.navapp.navigation.destination.data.Location;
+import com.navapp.navigation.destination.data.Place;
 import com.navapp.navigation.destination.data.PhoneNumber;
 import com.navapp.navigation.destination.data.Rate;
 
 public class Destination {
-    private final Location location;
+    private final Place place;
     private final Rate rate;
     private final PhoneNumber phoneNumber;
     private final String comment;
     private boolean isDelivered;
 
-    public Destination(Location location) {
-        this(location, Rate.empty());
+    public Destination(Place place) {
+        this(place, Rate.empty());
     }
 
-    public Destination(Location location, Rate rate) {
-        this(location, rate, PhoneNumber.empty());
+    public Destination(Place place, Rate rate) {
+        this(place, rate, PhoneNumber.empty());
     }
 
-    public Destination(Location location, Rate rate, PhoneNumber phoneNumber) {
-        this(location, rate, phoneNumber, "");
+    public Destination(Place place, Rate rate, PhoneNumber phoneNumber) {
+        this(place, rate, phoneNumber, "");
     }
 
-    public Destination(Location location, Rate rate, PhoneNumber phoneNumber, String comment) {
-        this(location, rate, phoneNumber, comment, false);
+    public Destination(Place place, Rate rate, PhoneNumber phoneNumber, String comment) {
+        this(place, rate, phoneNumber, comment, false);
     }
 
-    private Destination(Location location, Rate rate, PhoneNumber phoneNumber, String comment, boolean isDelivered) {
-        this.location = location;
+    private Destination(Place place, Rate rate, PhoneNumber phoneNumber, String comment, boolean isDelivered) {
+        this.place = place;
         this.rate = rate;
         this.phoneNumber = phoneNumber;
         this.comment = comment;
@@ -36,15 +36,15 @@ public class Destination {
     }
 
     public Destination changeRate(Rate newRate) {
-        return new Destination(location, newRate, phoneNumber, comment, isDelivered);
+        return new Destination(place, newRate, phoneNumber, comment, isDelivered);
     }
 
-    public String getLocationId() {
-        return location.getId();
+    public String getPlaceId() {
+        return place.getId();
     }
 
-    public Location getLocation() {
-        return location;
+    public Place getPlace() {
+        return place;
     }
 
     public Rate getRate() {
@@ -78,7 +78,7 @@ public class Destination {
 
         Destination that = (Destination) o;
         return isDelivered == that.isDelivered &&
-                location.equals(that.location) &&
+                place.equals(that.place) &&
                 rate.equals(that.rate) &&
                 phoneNumber.equals(that.phoneNumber) &&
                 comment.equals(that.comment);
@@ -86,6 +86,6 @@ public class Destination {
 
     @Override
     public String toString() {
-        return String.format("location: %s \n rate: %s \n number: %s \n comment: %s \n delivered? %b", location, rate, phoneNumber, comment, isDelivered);
+        return String.format("place: %s \n rate: %s \n number: %s \n comment: %s \n delivered? %b", place, rate, phoneNumber, comment, isDelivered);
     }
 }

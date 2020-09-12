@@ -4,7 +4,7 @@ import android.net.Uri;
 
 import com.google.maps.model.LatLng;
 import com.navapp.navigation.destination.Destination;
-import com.navapp.navigation.destination.data.Location;
+import com.navapp.navigation.destination.data.Place;
 import com.navapp.navigation.route.Route;
 import com.navapp.navigation.route.RouteLinkFactory;
 
@@ -35,10 +35,10 @@ public class RouteLinkFactoryTest {
     @Before
     public void createRoute() {
         ArrayList<Destination> destinations = new ArrayList<>();
-        destinations.add(new Destination(new Location("1", "address1", new LatLng(0, 0))));
-        destinations.add(new Destination(new Location("2", "address2", new LatLng(0, 0))));
-        destinations.add(new Destination(new Location("3", "address3", new LatLng(0, 0))));
-        destinations.add(new Destination(new Location("4", "address4", new LatLng(0, 0))));
+        destinations.add(new Destination(new Place("1", "address1", new LatLng(0, 0))));
+        destinations.add(new Destination(new Place("2", "address2", new LatLng(0, 0))));
+        destinations.add(new Destination(new Place("3", "address3", new LatLng(0, 0))));
+        destinations.add(new Destination(new Place("4", "address4", new LatLng(0, 0))));
 
         route = new Route(destinations);
 

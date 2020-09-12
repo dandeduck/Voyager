@@ -2,7 +2,7 @@ package com.nvapp.navigation.route;
 
 import com.google.maps.model.LatLng;
 import com.navapp.navigation.destination.Destination;
-import com.navapp.navigation.destination.data.Location;
+import com.navapp.navigation.destination.data.Place;
 import com.navapp.navigation.destination.data.Rate;
 import com.navapp.navigation.route.Route;
 
@@ -12,8 +12,6 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
@@ -22,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 @Config(manifest = Config.NONE)
 public class RouteTest {
     private static final double DEFAULT_DELTA = 0.001;
-    private static final Destination BASE_DESTINATION = new Destination(new Location("", "", new LatLng(0, 0)));
+    private static final Destination BASE_DESTINATION = new Destination(new Place("", "", new LatLng(0, 0)));
     private static final Rate FIRST_RATE = new Rate("first", 10);
     private static final Rate SECOND_RATE = new Rate("second", 20);
     private static final Rate THIRD_RATE = new Rate("third", 30);
