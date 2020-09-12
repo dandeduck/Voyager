@@ -25,6 +25,10 @@ public class RouteLinkBuilder {
         linkBuilder = new StringBuilder(NAVIGATION_LINK);
     }
 
+    public RouteLinkBuilder origin(Route route) {
+        return origin(route.getOrigin().getPlace().getAddress(), route.getOrigin().getPlaceId());
+    }
+
     public RouteLinkBuilder origin(String address, String placeId) {
         linkBuilder.append(ORIGIN)
                 .append(address)
@@ -35,12 +39,20 @@ public class RouteLinkBuilder {
     }
 
     public RouteLinkBuilder destination(Route route) {
+        return destination(route.getDestination().getPlace().getAddress(), route.getDestination().getPlaceId());
+    }
+
+    public RouteLinkBuilder destination(String address, String placeId) {
         linkBuilder.append(DESTINATION)
-                .append(route.getDestination().getPlace().getAddress())
+                .append(address)
                 .append(DESTINATION_PLACE_ID)
-                .append(route.getDestination().getPlaceId());
+                .append(placeId);
 
         return this;
+    }
+
+    public RouteLinkBuilder waypoints(Route route) {
+        return waypoints(route.getWaypoints());
     }
 
     public RouteLinkBuilder waypoints(List<Destination> waypoints) {
