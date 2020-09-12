@@ -1,5 +1,6 @@
 package com.navapp.navigation.destination.data;
 
+import com.google.maps.*;
 import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlaceDetails;
@@ -29,6 +30,22 @@ public class Place {
 
     public LatLng getPosition() {
         return position;
+    }
+
+    public void requestIdRefresh(GeoApiContext context, PlaceAutocompleteRequest.SessionToken session, PendingResult.Callback<Place> callback) {
+        PlacesApi.placeDetails(context, id, session)
+                .fields(PlaceDetailsRequest.FieldMask.PLACE_ID)
+                .setCallback(new PendingResult.Callback<PlaceDetails>() {
+                    @Override
+                    public void onResult(PlaceDetails result) {
+                        callback.onResult(new Place(result.placeId, address, position));
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e) {
+                        callback.onFailure(e);
+                    }
+                });
     }
 
     @Override
