@@ -9,7 +9,7 @@ import com.navapp.navigation.destination.data.Place;
 
 public class PlaceFactory {
     public static void requestPlace(GeoApiContext context, PlaceAutocompleteRequest.SessionToken token, AutocompletePrediction prediction, PendingResult.Callback<Place> callback) {
-        new PlaceDetailsSupplier(context, token).requestBasicPlaceDetails(prediction.placeId, new PendingResult.Callback<PlaceDetails>() {
+        new PlaceDetailsFactory(context, token).requestBasicPlaceDetails(prediction.placeId, new PendingResult.Callback<PlaceDetails>() {
             @Override
             public void onResult(PlaceDetails result) {
                 callback.onResult(new Place(prediction, result));

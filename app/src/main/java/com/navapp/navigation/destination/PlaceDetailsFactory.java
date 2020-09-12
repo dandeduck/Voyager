@@ -3,11 +3,11 @@ package com.navapp.navigation.destination;
 import com.google.maps.*;
 import com.google.maps.model.PlaceDetails;
 
-public class PlaceDetailsSupplier {
+public class PlaceDetailsFactory {
     private final GeoApiContext context;
     private final PlaceAutocompleteRequest.SessionToken sessionToken;
 
-    public PlaceDetailsSupplier(GeoApiContext context, PlaceAutocompleteRequest.SessionToken sessionToken) {
+    public PlaceDetailsFactory(GeoApiContext context, PlaceAutocompleteRequest.SessionToken sessionToken) {
         this.context = context;
         this.sessionToken = sessionToken;
     }
