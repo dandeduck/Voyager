@@ -19,16 +19,17 @@ public class PlaceAutocompletePredictionsFactory {
     }
 
     public void requestPredictions(String userInput, PendingResult.Callback<List<AutocompletePrediction>> callback) {
-        PlacesApi.placeAutocomplete(context, userInput, session).setCallback(new PendingResult.Callback<AutocompletePrediction[]>() {
-            @Override
-            public void onResult(AutocompletePrediction[] result) {
-                callback.onResult(Arrays.asList(result));
-            }
+        PlacesApi.placeAutocomplete(context, userInput, session)
+                .setCallback(new PendingResult.Callback<AutocompletePrediction[]>() {
+                    @Override
+                    public void onResult(AutocompletePrediction[] result) {
+                        callback.onResult(Arrays.asList(result));
+                    }
 
-            @Override
-            public void onFailure(Throwable e) {
-                callback.onFailure(e);
-            }
-        });
+                    @Override
+                    public void onFailure(Throwable e) {
+                        callback.onFailure(e);
+                    }
+                });
     }
 }
