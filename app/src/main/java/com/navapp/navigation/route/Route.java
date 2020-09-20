@@ -2,6 +2,7 @@ package com.navapp.navigation.route;
 
 import com.navapp.navigation.destination.Destination;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -17,15 +18,23 @@ public class Route {
         this.destinations = destinations;
     }
 
-    public List<Destination> getDestinations() {
-        return Collections.unmodifiableList(destinations);
+    public Destination getOrigin() {
+        return destinations.get(0);
+    }
+
+    public Destination getDestination() {
+        return destinations.get(destinations.size()-1);
+    }
+
+    public List<Destination> getWaypoints() {
+        return Collections.unmodifiableList(destinations.subList(1, destinations.size()-1));
     }
 
     public double calcRateSum() {
         double sum = 0;
 
-        for (Destination destinatoin : destinations)
-            sum += destinatoin.getRate().getValue();
+        for (Destination destination : destinations)
+            sum += destination.getRate().getValue();
 
         return sum;
     }

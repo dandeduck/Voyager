@@ -4,7 +4,7 @@ import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.PendingResult;
 import com.navapp.navigation.destination.Destination;
-import com.navapp.navigation.destination.data.Location;
+import com.navapp.navigation.destination.data.Place;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class OptimizingRouteFactory implements RouteFactory{
     }
 
     @Override
-    public void requestCreation(Location start, List<Destination> destinations, Location end, PendingResult.Callback<Route> callback){
+    public void requestCreation(Place start, List<Destination> destinations, Place end, PendingResult.Callback<Route> callback){
         routePlanner.requestOrderedRouteIds(start.getId(), extractIds(destinations), end.getId(), new PendingResult.Callback<List<String>>() {
             @Override
             public void onResult(List<String> result) {
@@ -39,12 +39,12 @@ public class OptimizingRouteFactory implements RouteFactory{
         List<String> destinationIds = new ArrayList<>();
 
         for (Destination destination: destinations)
-            destinationIds.add(destination.getLocationId());
+            destinationIds.add(destination.getPlaceId());
 
         return destinationIds;
     }
 
-    private List<Destination> orderDestinationsByIds(List<Destination> destinations, List<String> orderedIds, Location end) {
+    private List<Destination> orderDestinationsByIds(List<Destination> destinations, List<String> orderedIds, Place end) {
         List<Destination> orderedDestinations = new ArrayList<>();
 
         for (int i = 0; i < orderedIds.size()-1; ++i)
@@ -63,6 +63,6 @@ public class OptimizingRouteFactory implements RouteFactory{
     }
 
     private boolean isEqualId(Destination destination, String id) {
-        return destination.getLocationId().equals(id);
+        return destination.getPlaceId().equals(id);
     }
 }

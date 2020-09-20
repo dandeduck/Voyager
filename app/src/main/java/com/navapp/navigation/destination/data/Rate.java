@@ -29,4 +29,9 @@ public class Rate {
         return Double.compare(rate.value, value) == 0 &&
                 name.equals(rate.name);
     }
+
+    @Override
+    public String toString() {
+        return String.format("name: %s - value: %s", name, value);
+    }
 }
